@@ -8,20 +8,31 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
+    //Lo tengo que ver
     pathMatch: 'full'
+    
   },
-  {
-    path: 'inicio',
-    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
-  },
+
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'inicio/:correo',    
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'vehiculo',
+    loadChildren: () => import('./pages/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
+  },
+  {
+    path: 'viajes',
+    loadChildren: () => import('./pages/viajes/viajes.module').then( m => m.ViajesPageModule)
   },
   {
     path: 'rcontrasena',
@@ -32,13 +43,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'vehiculo',
-    loadChildren: () => import('./pages/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
+    path: 'rcontrasena',
+    loadChildren: () => import('./pages/rcontrasena/rcontrasena.module').then( m => m.RcontrasenaPageModule)
   },
-  {
-    path: 'viajes',
-    loadChildren: () => import('./pages/viajes/viajes.module').then( m => m.ViajesPageModule)
-  },
+
+  
+
+  
+
+
+ 
+ 
 ];
 
 @NgModule({
