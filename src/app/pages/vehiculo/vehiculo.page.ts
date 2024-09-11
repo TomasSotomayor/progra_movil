@@ -8,10 +8,13 @@ import {NavController} from '@ionic/angular';
   styleUrls: ['./vehiculo.page.scss'],
 })
 export class VehiculoPage implements OnInit {
+  imagen: string;
   router: any;
   
   
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.imagen = 'assets/images/vehicle.jpg'
+  }
 
   ngOnInit() {
   }
@@ -24,7 +27,6 @@ export class VehiculoPage implements OnInit {
   volverButton() {
     this.navCtrl.back();
   }
-
   
 
 }
