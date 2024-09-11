@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -16,7 +17,10 @@ export class RegistroPage {
   repetirContrasena?: string;
   navCtrl: any;
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private router: Router
+  ) {}
 
   // Función para mostrar la alerta cuando se confirmen los datos
   async mostrarAlerta() {
@@ -54,6 +58,6 @@ export class RegistroPage {
 
     // Método para manejar el botón "Volver"
     volverButton() {
-      this.navCtrl.back();
-    }
+      this.router.navigateByUrl('/login');
+    }  
 }

@@ -25,7 +25,7 @@ export class RcontrasenaPage {
 
     // Mostrar alerta de éxito si el correo está ingresado
     const alert = await this.alertController.create({
-      header: 'Mensaje enviado con exito',
+      header: 'Mensaje enviado con éxito',
       message: 'Revise su correo para restablecer su contraseña.',
       buttons: ['OK']
     });

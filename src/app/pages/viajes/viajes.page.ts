@@ -22,7 +22,7 @@ export class ViajesPage implements OnInit {
   }
 
   volverButton() {
-    this.navCtrl.navigateRoot('/inicio/');
+    this.navCtrl.back();
   }
 
 }

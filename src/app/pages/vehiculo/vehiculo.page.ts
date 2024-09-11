@@ -22,7 +22,7 @@ export class VehiculoPage implements OnInit {
   }
 
   volverButton() {
-    this.navCtrl.navigateRoot('/inicio/');
+    this.navCtrl.back();
   }
 
   
