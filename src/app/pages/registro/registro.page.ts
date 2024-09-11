@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({

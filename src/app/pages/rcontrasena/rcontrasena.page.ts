@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rcontrasena',
@@ -9,7 +10,10 @@ import { AlertController } from '@ionic/angular';
 export class RcontrasenaPage {
   correo: string = ''; // Variable para almacenar el correo ingresado
 
-  constructor(private alertController: AlertController) { }
+  constructor(
+    private alertController: AlertController,
+    private router: Router
+  ) { }
 
   async enviarCorreo() {
     if (!this.correo) {
@@ -31,4 +35,9 @@ export class RcontrasenaPage {
     });
     await alert.present();
   }
+
+  volverButton() {
+    this.router.navigateByUrl('/login');
+  }
+
 }
