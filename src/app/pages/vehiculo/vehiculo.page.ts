@@ -27,6 +27,5 @@ export class VehiculoPage implements OnInit {
   volverButton() {
     this.navCtrl.back();
   }
-  
 
 }
