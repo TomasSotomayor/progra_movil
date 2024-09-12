@@ -21,6 +21,15 @@
     z-index: -1;
 }
 
+.image-container {
+    display: flex;
+    justify-content: center;  /* Centra la imagen horizontalmente */
+    align-items: center;      /* Centra la imagen verticalmente */
+  }
+
 ion-button{
-    margin-top: 40px;
+    color:white;
+    margin-top: 15px;
+    width: 90%;
+    justify-content: center;  /* Centra la imagen horizontalmente */
 }
