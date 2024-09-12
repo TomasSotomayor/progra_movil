@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {NavController} from '@ionic/angular';
 
 
@@ -12,7 +13,10 @@ export class VehiculoPage implements OnInit {
   router: any;
   
   
-  constructor(private navCtrl: NavController) {
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private navCtrl: NavController
+  ) {
     this.imagen = 'assets/images/vehicle.jpg'
   }
 
@@ -20,12 +24,15 @@ export class VehiculoPage implements OnInit {
   }
 
   vehiculo() {
-    console.log('vehiculo');
     this.router.navigateByUrl('vehiculo');
   }
 
   volverButton() {
     this.navCtrl.back();
+  }
+
+  navigateToPageAgregarVehiculo() {
+    this.navCtrl.navigateForward('/agregarvehiculo');
   }
 
 }
