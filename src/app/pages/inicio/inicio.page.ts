@@ -42,7 +42,7 @@ export class InicioPage implements OnInit {
     await loading.present();
     
     setTimeout(() => {
-      this.navCtrl.navigateForward('/viajes');
+      this.navCtrl.navigateForward('/listaviajes');
     }, 3000);
   }
 

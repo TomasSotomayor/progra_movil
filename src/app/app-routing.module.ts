@@ -47,12 +47,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/rcontrasena/rcontrasena.module').then( m => m.RcontrasenaPageModule)
   },
   {
-    path: 'listaviaje',
-    loadChildren: () => import('./pages/listaviaje/listaviaje.module').then( m => m.ListaviajePageModule)
-  },
-  {
     path: 'agregarvehiculo',
     loadChildren: () => import('./pages/agregarvehiculo/agregarvehiculo.module').then( m => m.AgregarvehiculoPageModule)
+  },
+  {
+    path: 'listaviajes',
+    loadChildren: () => import('./pages/listaviajes/listaviajes.module').then( m => m.ListaviajesPageModule)
   },
 
   

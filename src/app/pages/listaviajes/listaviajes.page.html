@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="volverButton()">Volver</ion-button>
+    <ion-title>Viajes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img alt="Jardín japonés" src="/assets/images/destino1.jpg"/>
+    <ion-card-header>
+      <ion-card-subtitle>18-09-2024</ion-card-subtitle>
+      <ion-card-title>Jardín Japonés</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <img alt="Fantasilandia" src="/assets/images/destino2.jpg"/>
+    <ion-card-header>
+      <ion-card-subtitle>19-09-2024</ion-card-subtitle>
+      <ion-card-title>Fantasilandia</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <img alt="MIM" src="/assets/images/destino3.jpg"/>
+    <ion-card-header>
+      <ion-card-subtitle>20-09-2024</ion-card-subtitle>
+      <ion-card-title>Museo Interactivo Mirador</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="navigateToPageViajes()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-button (click)="volverButton()">Volver</ion-button>
-    <ion-title style="text-align: center; font-size: 28px;">Viajes</ion-title> <!-- Título centrado y más grande -->
+    <ion-title style="text-align: center; font-size: 28px;">Nuevo viaje</ion-title> <!-- Título centrado y más grande -->
   </ion-toolbar>
 </ion-header>
 
@@ -9,36 +9,36 @@
 
   <!-- Recuadro con los parámetros -->
   <div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #000; border: 5px solid #f5f5f5; border-radius: 10px;">
-
-    <!-- Campo de costo -->
-    <ion-item style="background-color: #fff; margin-bottom: 15px;">
-      <ion-label style="margin-right: 20px;"><strong>Costo</strong></ion-label>
-      <ion-input type="number" placeholder="Ingrese el costo" disabled value="1000"></ion-input>
+ 
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Costo</strong></ion-label>
+      <ion-input [(ngModel)]="costo" type="text" placeholder="Ingrese el costo" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
-    <!-- Campo de fecha -->
-    <ion-item style="background-color: #fff; margin-bottom: 15px;">
-      <ion-label style="margin-right: 20px;"><strong>Fecha</strong></ion-label>
-      <ion-input type="date" disabled value="2024-09-09"></ion-input>
+    
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Fecha</strong></ion-label>
+      <ion-input [(ngModel)]="fecha" type="text" placeholder="Ingrese la fecha" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
-    <!-- Campo de ubicación origen -->
-    <ion-item style="background-color: #fff; margin-bottom: 15px;">
-      <ion-label style="margin-right: 20px;"><strong>Ubicación Origen</strong></ion-label>
-      <ion-input type="text" placeholder="Ingrese la ubicación de origen" disabled value="Santiago"></ion-input>
+    
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Ubicación Origen</strong></ion-label>
+      <ion-input [(ngModel)]="ubicacionorigen" type="text" placeholder="Ingrese la ubicación origen" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
-    <!-- Campo de ubicación destino -->
-    <ion-item style="background-color: #fff; margin-bottom: 15px;">
-      <ion-label style="margin-right: 20px;"><strong>Ubicación Destino</strong></ion-label>
-      <ion-input type="text" placeholder="Ingrese la ubicación de destino" disabled value="Valparaíso"></ion-input>
+    
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Ubicación Destino</strong></ion-label>
+      <ion-input [(ngModel)]="ubicaciondestino" type="text" placeholder="Ingrese la ubicación destino" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
-    <!-- Campo de número de patente -->
-    <ion-item style="background-color: #fff; margin-bottom: 15px;">
-      <ion-label style="margin-right: 20px;"><strong>Nro° Patente</strong></ion-label>
-      <ion-input type="text" placeholder="Ingrese el número de patente" disabled value="ABC1234"></ion-input>
+    
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Nro Patente</strong></ion-label>
+      <ion-input [(ngModel)]="nropatente" type="text" placeholder="Ingrese la patente" style="margin-left: 10px;"></ion-input>
     </ion-item>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <ion-button expand="block" color="light" (click)="mostrarAlerta()">Confirmar Datos</ion-button>
+    </div>
+
   </div>
 
 </ion-content>
