@@ -25,48 +25,48 @@ export class InicioPage implements OnInit {
   async cerrarSesion() {
     const loading = await this.loadingController.create({
       message: 'Cerrando sesión...',
-      duration: 3000
+      duration: 500
     });
     await loading.present();
     
     setTimeout(() => {
       this.navCtrl.navigateRoot('/login');
-    }, 3000);
+    }, 500);
   }
 
   async navigateToPageViajes() {
     const loading = await this.loadingController.create({
       message: 'Cargando viajes...',
-      duration: 3000
+      duration: 500
     });
     await loading.present();
     
     setTimeout(() => {
       this.navCtrl.navigateForward('/listaviajes');
-    }, 3000);
+    }, 500);
   }
 
   async navigateToPageVehiculo() {
     const loading = await this.loadingController.create({
       message: 'Cargando vehículos...',
-      duration: 3000
+      duration: 500
     });
     await loading.present();
     
     setTimeout(() => {
       this.navCtrl.navigateForward('/vehiculo');
-    }, 3000);
+    }, 500);
   }
 
   async navigateToPagePerfil() {
     const loading = await this.loadingController.create({
       message: 'Cargando perfil...',
-      duration: 3000
+      duration: 500
     });
     await loading.present();
     
     setTimeout(() => {
       this.navCtrl.navigateForward('/perfil');
-    }, 3000);
+    }, 500);
   }
 }

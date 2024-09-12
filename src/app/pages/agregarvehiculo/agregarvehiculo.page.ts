@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -7,7 +7,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './agregarvehiculo.page.html',
   styleUrls: ['./agregarvehiculo.page.scss'],
 })
-export class AgregarvehiculoPage implements OnInit {
+export class AgregarvehiculoPage  {
 
   // Variables para almacenar los datos del formulario
   marca: string = '';  
@@ -21,7 +21,7 @@ export class AgregarvehiculoPage implements OnInit {
 
   constructor(private router: Router, private alertController: AlertController) { }
 
-  ngOnInit() {}
+  
 
   // Método para manejar el botón "Volver"
   volverButton() {
