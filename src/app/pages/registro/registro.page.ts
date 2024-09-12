@@ -55,8 +55,8 @@ export class RegistroPage {
     await alert.present();
   }
 
-    // Método para manejar el botón "Volver"
-    volverButton() {
-      this.router.navigateByUrl('/login');
-    }  
+  // Método para manejar el botón "Volver"
+  volverButton() {
+    this.router.navigateByUrl('/login');
+  }
 }
