@@ -11,18 +11,26 @@
       <img src="assets/images/logo.png" alt="logo" style="width: 70%; height: 70%; object-fit: cover;">
     </div>
     <hr>
-    <ion-list>
-      <ion-item>
-        <ion-input [(ngModel)]="correo" label="Correo"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input [(ngModel)]="contrasena" label="Contraseña"></ion-input>
-      </ion-item>
-    </ion-list>
+    <div class="login-container">
+      <ion-list>
+        <ion-item>
+          <ion-input [(ngModel)]="correo" label="Correo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="contrasena" label="Contraseña"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
     <!-- 'inicio/:numero', -->
-    <ion-button (click)="login()">Acceder</ion-button>
-    <ion-button (click)="rContrasena()">Recuperar contraseña</ion-button>
-    <ion-button (click)="registrar()">Regístrate aquí</ion-button>
+    <div class="login-container">
+      <ion-button (click)="login()">Acceder</ion-button>
+    </div>
+    <div class="login-container">
+      <ion-button (click)="rContrasena()">Recuperar contraseña</ion-button>
+    </div>
+    <div class="login-container">
+      <ion-button (click)="registrar()">Regístrate aquí</ion-button>
+    </div>
   </div>
 
 </ion-content>

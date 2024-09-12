@@ -27,9 +27,11 @@
     align-items: center;      /* Centra la imagen verticalmente */
   }
 
-ion-button{
-    color:white;
-    margin-top: 15px;
-    width: 90%;
-    justify-content: center;  /* Centra la imagen horizontalmente */
+.login-container {
+    display: flex;
+    flex-direction: column; /* Puedes cambiar a row si prefieres los botones en una fila */
+    justify-content: center; /* Centra los botones verticalmente */
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+    width: calc(100% - 40px); /* Calcula el ancho restante después de restar 5px de margen a cada lado */
+    margin: 0 20px;
 }
