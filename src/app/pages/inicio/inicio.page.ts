@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -11,29 +11,62 @@ export class InicioPage implements OnInit {
 
   correo: string = "";
 
-  constructor(private activateRoute: ActivatedRoute, 
-              private navCtrl: NavController) { }
+  constructor(
+    private activateRoute: ActivatedRoute, 
+    private navCtrl: NavController,
+    private loadingController: LoadingController
+  ) { }
 
   ngOnInit() {
     this.correo = this.activateRoute.snapshot.params["correo"];
     console.log("PARAMETRO URL  ----> ", this.correo);
   }
 
-  cerrarSesion() {
-    console.log('Cerrando sesión...');
-    // Redirige al usuario a la pantalla de inicio de sesión
-    this.navCtrl.navigateRoot('/login');
+  async cerrarSesion() {
+    const loading = await this.loadingController.create({
+      message: 'Cerrando sesión...',
+      duration: 3000
+    });
+    await loading.present();
+    
+    setTimeout(() => {
+      this.navCtrl.navigateRoot('/login');
+    }, 3000);
   }
 
-  navigateToPageViajes() {
-    this.navCtrl.navigateForward('/viajes');
+  async navigateToPageViajes() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando viajes...',
+      duration: 3000
+    });
+    await loading.present();
+    
+    setTimeout(() => {
+      this.navCtrl.navigateForward('/viajes');
+    }, 3000);
   }
 
-  navigateToPageVehiculo() {
-    this.navCtrl.navigateForward('/vehiculo');
+  async navigateToPageVehiculo() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando vehículos...',
+      duration: 3000
+    });
+    await loading.present();
+    
+    setTimeout(() => {
+      this.navCtrl.navigateForward('/vehiculo');
+    }, 3000);
   }
 
-  navigateToPagePerfil() {
-    this.navCtrl.navigateForward('/perfil');
+  async navigateToPagePerfil() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando perfil...',
+      duration: 3000
+    });
+    await loading.present();
+    
+    setTimeout(() => {
+      this.navCtrl.navigateForward('/perfil');
+    }, 3000);
   }
 }
