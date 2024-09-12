@@ -6,32 +6,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <!-- Imagen del perfil centrada y más grande -->
+  <!-- Recuadro azul que envuelve toda la información del vehículo -->
   <div style="display: flex; justify-content: center; margin-top: 20px;">
-    <div style="width: 200px; height: 200px; border: 2px solid #ccc; display: flex; justify-content: center; align-items: center;">
-      <img src="assets/images/vehicle.jpg" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover;" *ngIf="imagen">
-      <ion-label *ngIf="!imagen">Imagen</ion-label>
-    </div>
-  </div>
+    <div style="width: 300px; border: 2px solid #007bff; padding: 20px; border-radius: 10px; background-color: #007bff; color: white;">
+      <!-- Imagen del perfil centrada y más grande -->
+      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <div style="width: 100%; height: 200px; border: 1px solid #0056b3; display: flex; justify-content: center; align-items: center; background-color: #fff;">
+          <img src="assets/images/vehicle.jpg" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover;" *ngIf="imagen">
+          <ion-label *ngIf="!imagen" style="color: #007bff;">Imagen</ion-label>
+        </div>
+      </div>
 
-  <!-- Datos del conductor centrados debajo de la imagen, alineados uno sobre otro -->
-  <div style="text-align: center; margin-top: 30px;">
+      <!-- Datos del vehículo centrados -->
+      <div style="text-align: center;">
+        <div style="margin-bottom: 15px;">
+          <ion-label style="font-size: 17px; color: white;"><strong>Marca:</strong> Toyota</ion-label>
+        </div>
 
-    <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Marca:</strong> Toyota</ion-label>
-    </div>
+        <div style="margin-bottom: 15px;">
+          <ion-label style="font-size: 17px; color: white;"><strong>Patente:</strong> TSJO99</ion-label>
+        </div>
 
-    <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Patente:</strong> TSJO99</ion-label>
-    </div>
+        <div style="margin-bottom: 15px;">
+          <ion-label style="font-size: 17px; color: white;"><strong>Color:</strong> Negro</ion-label>
+        </div>
 
-    <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Color:</strong> Negro</ion-label>
-    </div>
-
-    <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Modelo:</strong> Toyota Fortuner</ion-label>
+        <div style="margin-bottom: 15px;">
+          <ion-label style="font-size: 17px; color: white;"><strong>Modelo:</strong> Toyota Fortuner</ion-label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -40,5 +43,4 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
 </ion-content>
