@@ -54,10 +54,6 @@ const routes: Routes = [
     path: 'agregarvehiculo',
     loadChildren: () => import('./pages/agregarvehiculo/agregarvehiculo.module').then( m => m.AgregarvehiculoPageModule)
   },
-  {
-    path: 'listarvehiculo',
-    loadChildren: () => import('./pages/listarvehiculo/listarvehiculo.module').then( m => m.ListarvehiculoPageModule)
-  },
 
   
 
