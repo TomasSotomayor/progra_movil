@@ -46,6 +46,18 @@ const routes: Routes = [
     path: 'rcontrasena',
     loadChildren: () => import('./pages/rcontrasena/rcontrasena.module').then( m => m.RcontrasenaPageModule)
   },
+  {
+    path: 'listaviaje',
+    loadChildren: () => import('./pages/listaviaje/listaviaje.module').then( m => m.ListaviajePageModule)
+  },
+  {
+    path: 'agregarvehiculo',
+    loadChildren: () => import('./pages/agregarvehiculo/agregarvehiculo.module').then( m => m.AgregarvehiculoPageModule)
+  },
+  {
+    path: 'listarvehiculo',
+    loadChildren: () => import('./pages/listarvehiculo/listarvehiculo.module').then( m => m.ListarvehiculoPageModule)
+  },
 
   
 
