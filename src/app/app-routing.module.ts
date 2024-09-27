@@ -54,6 +54,11 @@ const routes: Routes = [
     path: 'listaviajes',
     loadChildren: () => import('./pages/listaviajes/listaviajes.module').then( m => m.ListaviajesPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
+  },
+
 
   
 
