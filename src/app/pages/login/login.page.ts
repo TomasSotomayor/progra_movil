@@ -12,7 +12,11 @@ export class LoginPage implements OnInit {
   correo:string = "";
   contrasena:string = "";
 
-  constructor(private router:Router) {}
+  constructor(private router:Router,
+              private firebase:FirebaseService,
+              private helper:HelperService,
+              private Storage:StorageService
+    ) {}
 
   ngOnInit() {
   }
