@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-registro',
@@ -15,6 +16,7 @@ export class RegistroPage {
   contrasena?: string;
   repetirContrasena?: string;
   navCtrl: any;
+  imagen?: any;
 
   constructor(
     private alertController: AlertController,
@@ -59,4 +61,32 @@ export class RegistroPage {
   volverButton() {
     this.router.navigateByUrl('/login');
   }
+
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+    if(image.webPath){
+      const response = await fetch(image.webPath);
+      const blob = await response.blob();
+
+      this.imagen = {
+        fname: 'foto' + image.format,
+        src: image.webPath,
+        file: blob
+      }
+    }
+  
+    // image.webPath will contain a path that can be set as an image src.
+    // You can access the original file using image.path, which can be
+    // passed to the Filesystem API to read the raw data of the image,
+    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+    var imageUrl = image.webPath;
+    
+  
+
+    this.imagen.src = imageUrl;
+  };
 }

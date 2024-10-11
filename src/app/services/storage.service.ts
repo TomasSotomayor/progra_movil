@@ -10,29 +10,33 @@ export class StorageService {
 
   constructor() { }
 
-  async setItem(llave: string, valor:string) {
-  await Preferences.set({key:llave,value:valor});
+  async setItem(llave:string, valor:string)  {
+    await Preferences.set({key:llave,value:valor});
   }
 
-  async getItem(llave:string){
-    const obj = await Preferences.get({key:llave})
-    return obj;
+  async getItem(llave:string): Promise <string | null>{
+    const obj = await Preferences.get({key:llave});
+    return obj.value;
   }
 
-  async agregartoken(dataJson:any){
+  async agregarToken(dataJson:any){
     this.setItem(llaveUber,JSON.stringify(dataJson));
   }
 
-
   async obtenerStorage(){
     const storageData = await this.getItem(llaveUber);
-    if (storageData == null){
+    
+    if (storageData == null) {
       return [];
-  }else{
-    let obj = JSON.parse(storageData);
-    return JSON.parse(storageData);
+      
+    }else{
+   
+      return JSON.parse(storageData);
+    }
+
 
 
   }
-  }
+
+  
 }
