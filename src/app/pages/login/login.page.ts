@@ -4,26 +4,26 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
 
-// Importamos los servicios de Firebase, Helper y Storage
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-
 export class LoginPage implements OnInit {
 
   correo:string = "asd@asd.cl";
   contrasena:string = "123456";
 
-  constructor(private router:Router,
-              private firebase:FirebaseService,
+  constructor(private router:Router, 
+              private firebase:FirebaseService, 
               private helper:HelperService,
-              private Storage:StorageService
-    ) {}
+              private storage:StorageService
+            
+            ) { }
 
   ngOnInit() {
   }
+
 
   async login(){
   
