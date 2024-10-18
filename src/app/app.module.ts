@@ -20,12 +20,12 @@ import { FirebaseService } from './services/firebase.service'; // <--- Asegúrat
     AppRoutingModule,
     AngularFireAuthModule,  // Módulo para autenticación de Firebase
     AngularFireModule.initializeApp({  // Configura Firebase aquí con tus credenciales
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyCFuQHBgbZjXp5xbFEuOUkAy-oW5xWYiAY",
+      authDomain: "oyanedel-sotomayor.firebaseapp.com",
+      projectId: "oyanedel-sotomayor",
+      storageBucket: "oyanedel-sotomayor.appspot.com",
+      messagingSenderId: "215322682992",
+      appId: "1:215322682992:web:920c40c2bf44906efa36b5"
     })
   ],
   providers: [
