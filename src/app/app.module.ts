@@ -11,12 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FirebaseService } from './services/firebase.service'; // <--- Asegúrate de que esta ruta sea correcta
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireAuthModule,  // Módulo para autenticación de Firebase
     AngularFireModule.initializeApp({  // Configura Firebase aquí con tus credenciales
@@ -26,11 +27,12 @@ import { FirebaseService } from './services/firebase.service'; // <--- Asegúrat
       storageBucket: "oyanedel-sotomayor.appspot.com",
       messagingSenderId: "215322682992",
       appId: "1:215322682992:web:920c40c2bf44906efa36b5"
+
     })
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    FirebaseService  // <--- Agrega el servicio a los proveedores
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideHttpClient(),
+    FirebaseService,   // <--- Agrega el servicio a los proveedores
   ],
   bootstrap: [AppComponent],
 })
