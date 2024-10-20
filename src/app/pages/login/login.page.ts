@@ -55,18 +55,18 @@ export class LoginPage implements OnInit {
       loader.dismiss();
     } catch (error:any) {
 
-      let msg = "Ocurrió un error al iniciar sesión.";
+      let msgerror = "Ocurrió un error al iniciar sesión.";
 
       if(error.code == "auth/invalid-credential1"){
-        msg = "Credenciales incorrectas.";
+        msgerror = "Credenciales incorrectas.";
       }else if(error.code == "auth/wrong-password1"){
-        msg = "Contraseña incorrecta.";
+        msgerror = "Contraseña incorrecta.";
       }else if(error.code == "auth/invalid-email1"){
-        msg = "Correo no valido.";
+        msgerror = "Correo no valido.";
       }
 
 
-      this.helper.showAlert(msg,"Aceptar");
+      this.helper.showAlert(msgerror,"Aceptar");
       loader.dismiss();
     }
 

@@ -22,7 +22,11 @@ export class FirebaseService {
 
 
   async registro(email:string, contrasena:string){
-    const request = await this.fire.createUserWithEmailAndPassword(email,contrasena);
+    try {
+      return await this.fire.createUserWithEmailAndPassword(email,contrasena);
+    } catch (error) {
+      throw error;
+    }
   }
 
 
