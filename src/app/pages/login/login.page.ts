@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { UserModel } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,14 @@ export class LoginPage implements OnInit {
 
   correo:string = "asd@asd.cl";
   contrasena:string = "123456";
+  token:string = "";
+  usuario:UserModel[] = [];
 
   constructor(private router:Router,
               private firebase:FirebaseService,
               private helper:HelperService,
-              private storage:StorageService
+              private storage:StorageService,
+              private usuarioService:UsuarioService
 
 
             ) { }
