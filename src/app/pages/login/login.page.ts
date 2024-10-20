@@ -14,11 +14,11 @@ export class LoginPage implements OnInit {
   correo:string = "asd@asd.cl";
   contrasena:string = "123456";
 
-  constructor(private router:Router, 
-              private firebase:FirebaseService, 
+  constructor(private router:Router,
+              private firebase:FirebaseService,
               private helper:HelperService,
               private storage:StorageService
-            
+
             ) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
 
 
   async login(){
-  
+
     if (this.correo == "") {
       this.helper.showAlert("Ingrese el correo", "Error de validación");
       return;
@@ -45,11 +45,12 @@ export class LoginPage implements OnInit {
     try {
 
       await this.firebase.login(this.correo,this.contrasena);
+
       loader.dismiss();
     } catch (error:any) {
-      
+
       let msg = "Ocurrió un error al iniciar sesión.";
-      
+
       if(error.code == "auth/invalid-credential1"){
         msg = "Credenciales incorrectas.";
       }else if(error.code == "auth/wrong-password1"){
@@ -63,7 +64,7 @@ export class LoginPage implements OnInit {
       loader.dismiss();
     }
 
-    const jsonToken = 
+    const jsonToken =
     [
       {
         "token":"123hbkjasnbdkjbsdkjs123",
@@ -78,12 +79,12 @@ export class LoginPage implements OnInit {
     //Obtenemos la info que guardamos en storage
     let token = await this.storage.obtenerStorage();
     console.log(token[0].nombre);
-    
+
 
     this.router.navigateByUrl("/inicio");
   }
 
-  resetPw(){
+  rContrasena(){
     this.router.navigateByUrl("reset-password");
   }
 
