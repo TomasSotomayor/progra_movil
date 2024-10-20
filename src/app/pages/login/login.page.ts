@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
               private helper:HelperService,
               private storage:StorageService
 
+
             ) { }
 
   ngOnInit() {
