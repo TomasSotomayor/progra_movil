@@ -30,7 +30,7 @@ export class FirebaseService {
     const request = await this.fire.sendPasswordResetEmail(email);
   }
 
-  async logout(){
+  async cerrarSesion(){
     await this.fire.signOut();
   }
 

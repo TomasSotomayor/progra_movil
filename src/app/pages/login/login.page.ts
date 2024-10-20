@@ -87,11 +87,11 @@ export class LoginPage implements OnInit {
     console.log(token[0].nombre);
 
 
-    this.router.navigateByUrl("/inicio");
+    this.router.navigateByUrl("inicio");
   }
 
   rContrasena(){
-    this.router.navigateByUrl("reset-password");
+    this.router.navigateByUrl("rcontrasena");
   }
 
   registro(){
