@@ -50,7 +50,19 @@ export class LoginPage implements OnInit {
     const loader = await this.helper.showLoader("Cargando");
     try {
 
-      await this.firebase.login(this.correo,this.contrasena);
+      const reqFirebase = await this.firebase.login(this.correo,this.contrasena);
+
+      const token = await reqFirebase.user?.getIdToken();
+
+      if (token) {
+        this.token = token;
+        const req = await this.usuarioService.obtenUsuario({
+          p_correo:this.correo,
+          token:token
+        });
+        this.usuario = req.data;
+        console.log("Data usuario: ", this.usuario[0].id_usuario);
+      }
 
       loader.dismiss();
     } catch (error:any) {
@@ -62,7 +74,7 @@ export class LoginPage implements OnInit {
       }else if(error.code == "auth/wrong-password1"){
         msgerror = "Contraseña incorrecta.";
       }else if(error.code == "auth/invalid-email1"){
-        msgerror = "Correo no valido.";
+        msgerror = "Correo no válido.";
       }
 
 
@@ -73,8 +85,9 @@ export class LoginPage implements OnInit {
     const jsonToken =
     [
       {
-        "token":"123hbkjasnbdkjbsdkjs123",
-        "nombre":"PGY4121"
+        "token":this.token,
+        "usuario_id":this.usuario[0].id_usuario,
+        "usuario_correo":this.usuario[0].correo_electronico
       }
     ];
 

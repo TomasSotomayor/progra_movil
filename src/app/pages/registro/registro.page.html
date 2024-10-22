@@ -11,9 +11,8 @@
       <ion-title size="large" style="text-align: center; font-size: 28px;">Registro de usuario</ion-title> <!-- Título centrado -->
     </ion-toolbar>
   </ion-header>
-
-  <!-- Contenedor con fondo negro y amarillo -->
   <div style="background-color: black; color: yellow; padding: 20px; border-radius: 10px; border: 2px solid yellow; max-width: 400px; margin: 20px auto;">
+    
     <!-- Campo de nombre -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Nombre</strong></ion-label>
@@ -32,27 +31,27 @@
       <ion-input [(ngModel)]="telefono" type="tel" placeholder="Ingrese su teléfono" style="margin-left: 10px;"></ion-input>
     </ion-item>
 
-    <!-- Campo de dirección -->
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Dirección</strong></ion-label>
-      <ion-input [(ngModel)]="direccion" type="text" placeholder="Ingrese su dirección" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-
     <!-- Campo de contraseña -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Contraseña</strong></ion-label>
       <ion-input [(ngModel)]="contrasena" type="password" placeholder="Ingrese su contraseña" style="margin-left: 10px;"></ion-input>
     </ion-item>
 
-    <!-- Campo de repetir contraseña -->
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Repetir contraseña</strong></ion-label>
-      <ion-input [(ngModel)]="repetirContrasena" type="password" placeholder="Repita su contraseña" style="margin-left: 10px;"></ion-input>
+    <!-- Campo para foto -->
+    <ion-item>
+      <img *ngIf="imagen" [src]="imagen.src" height="100" width="100" alt="">
+      <ion-button (click)="takePicture()" expand="block" fill="clear" shape="round">
+        <ion-icon style="margin-right: 10px" slot="start" name="camera-outline">
+          Tomar foto
+        </ion-icon>
+      </ion-button>
     </ion-item>
 
-    <!-- Botón de Confirmar Datos -->
+    <!-- Botón de Registro -->
     <div style="text-align: center; margin-top: 20px;">
-      <ion-button expand="block" color="light" (click)="mostrarAlerta()">Confirmar Datos</ion-button>
+      <ion-button expand="block" color="light" (click)="registro()">
+        Registrarse
+      </ion-button>
     </div>
   </div>
 </ion-content>
