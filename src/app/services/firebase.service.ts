@@ -20,7 +20,6 @@ export class FirebaseService {
     }
   }
 
-
   async registro(email:string, contrasena:string){
     try {
       return await this.fire.createUserWithEmailAndPassword(email,contrasena);

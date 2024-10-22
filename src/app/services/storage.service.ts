@@ -23,7 +23,7 @@ export class StorageService {
     this.setItem(llaveUber,JSON.stringify(dataJson));
   }
 
-  async obtenerStorage(){
+  async obtenStorage(){
     const storageData = await this.getItem(llaveUber);
     
     if (storageData == null) {

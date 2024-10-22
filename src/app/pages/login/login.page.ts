@@ -83,7 +83,7 @@ export class LoginPage implements OnInit {
 
 
     //Obtenemos la info que guardamos en storage
-    let token = await this.storage.obtenerStorage();
+    let token = await this.storage.obtenStorage();
     console.log(token[0].nombre);
 
 
