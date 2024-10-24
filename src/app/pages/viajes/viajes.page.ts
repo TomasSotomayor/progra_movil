@@ -14,7 +14,7 @@ export class ViajesPage {
   ubicaciondestino?: string;
   nropatente?: string;
   navCtrl: any;
-  
+
 
   constructor(
     private alertController: AlertController,

@@ -10,18 +10,18 @@ import { AlertController } from '@ionic/angular';
 export class AgregarvehiculoPage  {
 
   // Variables para almacenar los datos del formulario
-  marca: string = '';  
+  marca: string = '';
   modelo: string = '';
   color: string = '';
   patente: string = '';
-  anio: number | null = null;  // Cambiado de "año" a "anio" para evitar errores con caracteres especiales
+  anio: number | null = null;
   combustible: string = '';
-  capacidadPasajeros: number | null = null;  
+  capacidadPasajeros: number | null = null;
   idUsuario: string = '';
 
   constructor(private router: Router, private alertController: AlertController) { }
 
-  
+
 
   // Método para manejar el botón "Volver"
   volverButton() {
@@ -30,7 +30,7 @@ export class AgregarvehiculoPage  {
 
   // Método para manejar el botón "Agregar"
   async agregarVehiculo() {
-    if (!this.marca || !this.modelo || !this.patente || !this.anio || !this.idUsuario) {
+    if (!this.marca || !this.modelo || !this.patente || !this.anio || !this.combustible || !this.capacidadPasajeros) {
       const alert = await this.alertController.create({
         header: 'Error',
         message: 'Por favor, complete todos los campos obligatorios.',
