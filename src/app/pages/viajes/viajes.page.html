@@ -9,34 +9,33 @@
 
   <!-- Recuadro con los parámetros -->
   <div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #000; border: 5px solid #f5f5f5; border-radius: 10px;">
-
+ 
+  <!-- Campo de Costo -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Costo</strong></ion-label>
       <ion-input [(ngModel)]="costo" type="text" placeholder="Ingrese el costo" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
+    
+  <!-- Campo de Fecha -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Fecha</strong></ion-label>
       <ion-input [(ngModel)]="fecha" type="text" placeholder="Ingrese la fecha" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
+    
+  <!-- Campo de Ubicación Origen -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Ubicación Origen</strong></ion-label>
       <ion-input [(ngModel)]="ubicacionorigen" type="text" placeholder="Ingrese la ubicación origen" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
+    
+  <!-- Campo de Ubicación Destino -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Ubicación Destino</strong></ion-label>
       <ion-input [(ngModel)]="ubicaciondestino" type="text" placeholder="Ingrese la ubicación destino" style="margin-left: 10px;"></ion-input>
     </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Nro Patente</strong></ion-label>
-      <ion-input [(ngModel)]="nropatente" type="text" placeholder="Ingrese la patente" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-
+    
     <div style="text-align: center; margin-top: 20px;">
-      <ion-button expand="block" color="light" (click)="mostrarAlerta()">Confirmar Datos</ion-button>
+      <ion-button expand="block" color="light" (click)="addViaje()">Registrar viaje</ion-button>
     </div>
 
   </div>
