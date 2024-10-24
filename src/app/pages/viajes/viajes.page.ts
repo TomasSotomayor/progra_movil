@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { HelperService } from 'src/app/services/helper.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { ViajeService} from 'src/app/services/viaje.service';
 
 @Component({
   selector: 'app-viajes',
@@ -8,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./viajes.page.scss'],
 })
 export class ViajesPage {
-  costo: string = "";
+  costo: number = 0;
   fecha: string = "";
   ubicacionorigen: string = "";
   ubicaciondestino: string = "";
@@ -27,10 +30,10 @@ export class ViajesPage {
   }
 
   async addViaje() {
-    const userFirebase = await this.firebase.addViaje(this.correo, this.contrasena);
+    const userFirebase = await this.firebase.addViaje();
     const token = await userFirebase.user?.getIdToken();
     if(token) {
-      const req = await this.viajeService.addViaje({
+      const req = await this.viajeService.registroViaje({
         p_costo: this.costo,
         p_fecha: this.fecha,
         p_ubicacionorigen: this.ubicacionorigen,

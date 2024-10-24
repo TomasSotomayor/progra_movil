@@ -51,4 +51,8 @@ export class FirebaseService {
     vehiculo.imagen = imagen; // Añadir la imagen al objeto
     return await vehiculoRef.add(vehiculo); // Agregar el vehículo a Firestore
   }
+
+  async addViaje(email: string, contrasena: string) {
+
+  }
 }

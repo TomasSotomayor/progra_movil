@@ -21,5 +21,30 @@ export class ViajeService {
       throw error;
     }
   }
+
+  async registroViaje(datosViaje:dataBodyViaje) {
+    try {
+      const formData = new FormData();
+      formData.append('p_costo', datosViaje.p_costo);
+      formData.append('p_fecha', datosViaje.p_fecha);
+      formData.append('p_ubicacionorigen', datosViaje.p_ubicacionorigen);
+      formData.append('p_ubicaciondestino', datosViaje.p_ubicaciondestino);
+      if(datosViaje.token) {
+        formData.append('token', datosViaje.token);
+      }
+      const response = await lastValueFrom(this.http.post<any>(environment.apiUrl + 'user/agregar', formData));
+      return response;
+    } catch(error) {
+      throw error;
+    }
+  }
   
+}
+
+interface dataBodyViaje {
+  p_costo: number;
+  p_fecha: string;
+  p_ubicacionorigen: string;
+  p_ubicaciondestino: string;
+  token?:string;
 }
