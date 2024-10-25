@@ -46,9 +46,7 @@ export class RegistroPage {
     await this.router.navigateByUrl('login');
   }
 
-  // Función para mostrar la alerta cuando se confirmen los datos
   async mostrarAlerta() {
-    // Comprobación básica de que los campos requeridos estén llenos
     if (!this.nombre || !this.correo || !this.telefono || !this.contrasena) {
       const alert = await this.alertController.create({
         header: 'Error',
@@ -58,13 +56,11 @@ export class RegistroPage {
       await alert.present();
       return;
     }
-    // Si todo está correcto, mostrar alerta de registro completado
     const alert = await this.alertController.create({
       header: 'Registro Completado',
       message: '¡Tu registro ha sido completado con éxito!',
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -89,10 +85,6 @@ export class RegistroPage {
         file: blob
       }
     }
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
     var imageUrl = image.webPath;
     this.imagen.src = imageUrl;
   };

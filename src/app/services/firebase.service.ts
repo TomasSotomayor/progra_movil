@@ -35,7 +35,6 @@ export class FirebaseService {
     await this.fire.signOut();
   }
 
-  // Método para obtener el token del usuario autenticado
   async obtenerToken(): Promise<string | null> {
     const user = await this.fire.currentUser;
     if (user) {

@@ -32,14 +32,12 @@ export class AgregarvehiculoPage  {
   }
 
   async agregarVehiculo() {
-    const userFirebase = await this.firebase.registro(this.correo,this.contrasena);
-    const token = await userFirebase.user?.getIdToken();
+    const id_usuario = await this.firebase.obtenerToken();
+    const token = await this.firebase.obtenerToken();
 
-    const id_usuario = await this.helper.getUserId();
     if(token) {
       try {
         const req = await this.vehiculoService.addVehiculo({
-          p_id_usuario: id_usuario,
           p_patente: this.patente,
           p_marca: this.marca,
           p_modelo: this.modelo,
@@ -47,9 +45,10 @@ export class AgregarvehiculoPage  {
           p_color: this.color,
           p_tipo_combustible: this.tipo_combustible,
           p_capacidad_pasajeros: this.capacidad_pasajeros,
-          token: token,
-          image: this.imagen
-        });
+          token: token
+        },
+        this.imagen
+      );
         await this.helper.showAlert("Vehículo agregado correctamente.", "Información");
         this.router.navigateByUrl('inicio');
       } catch (error) {
@@ -57,61 +56,28 @@ export class AgregarvehiculoPage  {
         await this.helper.showAlert("Ocurrió un error al agregar el vehículo","Error");
       }
     }
-      
   }
 
-  async takePicture() {
+  takePicture = async () => {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Uri
     });
-
-    if (image.webPath) {
+    if(image.webPath){
       const response = await fetch(image.webPath);
       const blob = await response.blob();
 
       this.imagen = {
-        fname: 'vehiculo' + image.format,
+        fname: 'foto' + image.format,
         src: image.webPath,
-        file: blob,
-      };
+        file: blob
+      }
     }
-  }
+    var imageUrl = image.webPath;
+    this.imagen.src = imageUrl;
+  };
 
-
-
-
-
-
-
-
-
-
-  // Método para manejar el botón "Agregar"
-  async agregarVehiculo() {
-    const userData = await this.storage.obtenStorage();
-    const idUsuario = userData[0]?.usuario_id;
-
-    const userFirebase = await this.firebase.agregarVehiculo()
-    const token = await userFirebase.user?.getIdToken()
-    if(token) {
-      const req = await this.vehiculoService.addVehiculo({
-        p_marca: this.marca,
-        p_modelo: this.modelo,
-        p_color: this.color,
-        p_anio: this.anio,
-        p_combustible: this.combustible,
-        p_capacidadPasajeros: this.capacidadPasajeros,
-        token:token
-      },
-      this.imagen
-    );
-    await this.helper.showAlert("Vehículo agregado correctamente.", "Información");
-    await this.router.navigateByUrl('/vehiculo');
-    }}
-
-  // Método para manejar el botón "Volver"
   volverButton() {
     this.router.navigateByUrl('/vehiculo');
   }

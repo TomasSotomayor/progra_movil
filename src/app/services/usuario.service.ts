@@ -19,9 +19,7 @@ export class UsuarioService {
       if(datosUsuario.token) {
         formData.append('token', datosUsuario.token);
       }
-      
       formData.append('image_usuario', imgFileUser.file, imgFileUser.name);
-      
       const response = await lastValueFrom(this.http.post<any>(environment.apiUrl + 'user/agregar', formData));
       return response;
     } catch(error) {
