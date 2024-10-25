@@ -27,7 +27,9 @@ export class VehiculoPage implements OnInit {
     private helper: HelperService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   async registrarVehiculo() {
     const token = await this.firebase.obtenerToken(); // Asume que tienes un método para obtener el token

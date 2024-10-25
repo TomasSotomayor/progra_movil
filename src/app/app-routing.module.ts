@@ -9,17 +9,14 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    //Lo tengo que ver
     pathMatch: 'full'
-    
   },
-
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'inicio',    
+    path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
@@ -43,10 +40,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'rcontrasena',
-    loadChildren: () => import('./pages/rcontrasena/rcontrasena.module').then( m => m.RcontrasenaPageModule)
-  },
-  {
     path: 'agregarvehiculo',
     loadChildren: () => import('./pages/agregarvehiculo/agregarvehiculo.module').then( m => m.AgregarvehiculoPageModule)
   },
@@ -57,16 +50,7 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
-  },
-
-
-  
-
-  
-
-
- 
- 
+  }
 ];
 
 @NgModule({

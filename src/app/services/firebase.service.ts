@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importar Firestore
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(private fire: AngularFireAuth, private firestore: AngularFirestore) { }
+  constructor(
+    private fire: AngularFireAuth,
+    private firestore: AngularFirestore
+  ) {}
 
   async login(email: string, contrasena: string) {
     try {
@@ -28,7 +31,7 @@ export class FirebaseService {
     try {
       await this.fire.sendPasswordResetEmail(email);
     } catch (error) {
-      throw error; // Manejo de errores
+      throw error;
     }
   }
 
@@ -47,12 +50,14 @@ export class FirebaseService {
 
   // Método para agregar un vehículo
   async addVehiculo(vehiculo: any, imagen: string) {
-    const vehiculoRef = this.firestore.collection('vehiculos'); // Cambia 'vehiculos' por el nombre de tu colección
-    vehiculo.imagen = imagen; // Añadir la imagen al objeto
-    return await vehiculoRef.add(vehiculo); // Agregar el vehículo a Firestore
+    const vehiculoRef = this.firestore.collection('vehiculos');
+    vehiculo.imagen = imagen;
+    return await vehiculoRef.add(vehiculo);
   }
 
-  async addViaje(email: string, contrasena: string) {
-
+  // Método para agregar un viaje
+  async addViaje(viaje: any) {
+    const viajeRef = this.firestore.collection('viajes'); // Cambia 'viajes' si el nombre de tu colección es diferente
+    return await viajeRef.add(viaje); // Agrega el viaje a Firestore
   }
 }

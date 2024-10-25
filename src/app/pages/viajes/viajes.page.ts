@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { ViajeService} from 'src/app/services/viaje.service';
+import { ViajeService } from 'src/app/services/viaje.service';
 
 @Component({
   selector: 'app-viajes',
@@ -15,38 +15,42 @@ export class ViajesPage {
   fecha: string = "";
   ubicacionorigen: string = "";
   ubicaciondestino: string = "";
-  navCtrl: any;
-
 
   constructor(
-    private firebase:FirebaseService,
-    private viajeService:ViajeService,
+    private firebase: FirebaseService,
+    private viajeService: ViajeService,
     private alertController: AlertController,
     private router: Router,
     private helper: HelperService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async addViaje() {
-    const userFirebase = await this.firebase.addViaje();
-    const token = await userFirebase.user?.getIdToken();
-    if(token) {
-      const req = await this.viajeService.registroViaje({
-        p_costo: this.costo,
-        p_fecha: this.fecha,
-        p_ubicacionorigen: this.ubicacionorigen,
-        p_ubicaciondestino: this.ubicaciondestino,
-        token:token
-      })
+    try {
+      const token = await this.firebase.obtenerToken();
+      if (!token) {
+        throw new Error('No se pudo obtener el token de usuario.');
+      }
+
+      const viajeData = {
+        costo: this.costo,
+        fecha: this.fecha,
+        ubicacionorigen: this.ubicacionorigen,
+        ubicaciondestino: this.ubicaciondestino,
+        token: token,
+      };
+
+      await this.firebase.addViaje(viajeData);
+      await this.helper.showAlert("Viaje agregado correctamente.", "Información");
+      await this.router.navigateByUrl('listaviajes');
+    } catch (error) {
+      console.error("Error al agregar viaje:", error);
+      await this.helper.showAlert("Hubo un error al agregar el viaje.", "Error");
     }
-    await this.helper.showAlert("Viaje agregado correctamente.", "Información");
-    await this.router.navigateByUrl('listaviajes');
   }
 
   async mostrarAlerta() {
-    // Comprobación básica de que los campos requeridos estén llenos
     if (!this.costo || !this.fecha || !this.ubicacionorigen || !this.ubicaciondestino) {
       const alert = await this.alertController.create({
         header: 'Error',
@@ -56,6 +60,7 @@ export class ViajesPage {
       await alert.present();
       return;
     }
+
     const alert = await this.alertController.create({
       header: 'Registro Completado',
       message: '¡Tu registro ha sido completado con éxito!',
@@ -69,3 +74,4 @@ export class ViajesPage {
     this.router.navigateByUrl('/listaviajes');
   }
 }
+//
