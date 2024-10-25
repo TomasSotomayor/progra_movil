@@ -41,7 +41,6 @@ export class ViajesPage {
         token: token,
       };
 
-      await this.firebase.addViaje(viajeData);
       await this.helper.showAlert("Viaje agregado correctamente.", "Información");
       await this.router.navigateByUrl('listaviajes');
     } catch (error) {

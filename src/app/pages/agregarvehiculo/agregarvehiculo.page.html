@@ -17,41 +17,58 @@
     <ion-img src="assets/images/anadir.jpg" style="width: 200px; height: 200px; border-radius: 50%;"></ion-img>
   </div>
 
-  <!-- Formulario para agregar los datos del vehículo -->
   <ion-list style="padding: 20px;">
+
+    <ion-item>
+      <ion-label position="floating">Patente</ion-label>
+      <ion-input type="text" [(ngModel)]="patente" placeholder="Ingrese la patente"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Marca</ion-label>
-      <ion-input type="text" [(ngModel)]="marca"></ion-input>
+      <ion-input type="text" [(ngModel)]="marca" placeholder="Ingrese la marca"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Modelo</ion-label>
-      <ion-input type="text" [(ngModel)]="modelo"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Color</ion-label>
-      <ion-input type="text" [(ngModel)]="color"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Patente</ion-label>
-      <ion-input type="text" [(ngModel)]="patente"></ion-input>
+      <ion-input type="text" [(ngModel)]="modelo" placeholder="Ingrese el modelo"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Año</ion-label>
-      <ion-input type="number" [(ngModel)]="anio"></ion-input>
+      <ion-input type="number" [(ngModel)]="anio" placeholder="Ingrese el año"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Color</ion-label>
+      <ion-input type="text" [(ngModel)]="color" placeholder="Ingrese el color"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Tipo de Combustible</ion-label>
-      <ion-input type="text" [(ngModel)]="combustible"></ion-input>
+      <ion-input type="text" [(ngModel)]="tipo_combustible" placeholder="Ingrese el tipo de combustible"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Capacidad de Pasajeros</strong></ion-label>
+      <ion-input type="text" [(ngModel)]="capacidad_pasajeros" type="number" placeholder="Ingrese la capacidad"></ion-input>
+    </ion-item>
+
   </ion-list>
 
+  <!-- Campo para foto -->
+  <ion-item>
+    <ion-label>Foto</ion-label>
+    <img *ngIf="imagen" [src]="imagen.src" height="100" width="100" alt="">
+    <ion-button (click)="takePicture()" expand="block" fill="clear" shape="round">
+      <ion-icon style="margin-right: 10px" slot="start" name="camera-outline">
+        Tomar foto
+      </ion-icon>
+    </ion-button>
+  </ion-item>
+
   <!-- Botón para agregar vehículo -->
-  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <div style="text-align: center; margin-top: 20px;">
     <ion-button expand="block" (click)="agregarVehiculo()">Agregar</ion-button>
   </div>
 </ion-content>

@@ -58,7 +58,6 @@ export class RegistroPage {
       await alert.present();
       return;
     }
-
     // Si todo está correcto, mostrar alerta de registro completado
     const alert = await this.alertController.create({
       header: 'Registro Completado',
@@ -90,7 +89,6 @@ export class RegistroPage {
         file: blob
       }
     }
-
     // image.webPath will contain a path that can be set as an image src.
     // You can access the original file using image.path, which can be
     // passed to the Filesystem API to read the raw data of the image,
