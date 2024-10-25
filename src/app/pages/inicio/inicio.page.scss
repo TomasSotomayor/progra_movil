@@ -1,0 +1,12 @@
+ion-card {
+  color: white;
+  opacity: 0.8;
+  margin: 10px;
+  transition: background-color 2s ease-in-out; /* Transición para suavizar el cambio de color */
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-card {
+    color: lightgrey; /* Ajusta solo el color del texto en modo oscuro */
+  }
+}
