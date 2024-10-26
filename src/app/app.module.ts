@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-import { FirebaseService } from './services/firebase.service';
+import { FirebaseService } from './services/firebase.service'; // <--- Asegúrate de que esta ruta sea correcta
+import { StorageService } from './services/storage.service'; // <--- Importación de StorageService
 import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
@@ -26,8 +27,10 @@ import { provideHttpClient } from '@angular/common/http';
     })
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideHttpClient(),
-    FirebaseService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideHttpClient(),
+    FirebaseService,   // Servicio de Firebase
+    StorageService     // Servicio de almacenamiento
   ],
   bootstrap: [AppComponent],
 })

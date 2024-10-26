@@ -8,23 +8,22 @@
 <ion-content [fullscreen]="true">
   <div style="display: flex; justify-content: center; margin-top: 20px;">
     <div style="width: 200px; height: 200px; border: 2px solid #ccc; display: flex; justify-content: center; align-items: center;">
-      <img src="assets/images/conductor.jpg" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover;" *ngIf="imagen">
-      <ion-label *ngIf="!imagen">Imagen</ion-label>
+      <img *ngIf="imagen" [src]="imagen" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover;">
+      <ion-label *ngIf="!imagen">Imagen no disponible</ion-label>
     </div>
   </div>
 
   <div style="text-align: center; margin-top: 30px;">
-
     <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Nombre:</strong> Juan Pérez</ion-label>
+      <ion-label style="font-size: 17px;"><strong>Nombre:</strong> {{ nombre }}</ion-label>
     </div>
 
     <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Correo:</strong> juan.perez&#64;gmail.com</ion-label>
+      <ion-label style="font-size: 17px;"><strong>Correo:</strong> {{ correo }}</ion-label>
     </div>
 
     <div style="margin-bottom: 15px;">
-      <ion-label style="font-size: 17px;"><strong>Teléfono:</strong> +569 884475644</ion-label>
+      <ion-label style="font-size: 17px;"><strong>Teléfono:</strong> {{ telefono }}</ion-label>
     </div>
 
     <div style="margin-bottom: 15px;">
