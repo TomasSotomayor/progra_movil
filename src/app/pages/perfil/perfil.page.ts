@@ -11,7 +11,7 @@ export class PerfilPage implements OnInit {
   nombre: string = '';
   correo: string = '';
   telefono: string = '';
-  imagen: string | null = null;
+  imagen: string | null = null; // Cambiado de undefined a null para mejor manejo
 
   constructor(
     private navCtrl: NavController,
@@ -22,10 +22,10 @@ export class PerfilPage implements OnInit {
     // Recupera los datos del usuario del servicio de almacenamiento
     const usuario = await this.storageService.getItem('usuario');
     if (usuario) {
-      this.nombre = usuario.p_nombre; // Ajustar a los campos correctos
-      this.correo = usuario.p_correo_electronico; // Ajustar a los campos correctos
-      this.telefono = usuario.p_telefono; // Ajustar a los campos correctos
-      this.imagen = usuario.imagen; // Asegúrate de que la imagen esté guardada correctamente
+      this.nombre = usuario.nombre; // Asegúrate de que la propiedad es 'nombre'
+      this.correo = usuario.correo; // Asegúrate de que la propiedad es 'correo'
+      this.telefono = usuario.telefono; // Asegúrate de que la propiedad es 'telefono'
+      this.imagen = usuario.imagen; // Asegúrate de que la propiedad es 'imagen'
     }
   }
 

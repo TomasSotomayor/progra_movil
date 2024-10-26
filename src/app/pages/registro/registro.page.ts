@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/services/storage.service'; // Importar e
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage {
+export class RegistroPage implements OnInit {
   nombre: string = "";
   correo: string = "";
   telefono: string = "";
@@ -57,7 +57,7 @@ export class RegistroPage {
           nombre: this.nombre,
           correo: this.correo,
           telefono: this.telefono,
-          imagen: this.imagen ? this.imagen.src : null,
+          imagen: this.imagen ? this.imagen.src : null, // Verifica si la imagen está disponible
         });
 
         // Muestra confirmación de registro y redirige

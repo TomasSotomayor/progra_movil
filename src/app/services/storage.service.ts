@@ -23,7 +23,7 @@ export class StorageService {
 
   // Método para agregar un token al almacenamiento
   async agregarToken(dataJson: any) {
-    this.setItem(llaveUber, dataJson);
+    await this.setItem(llaveUber, dataJson);
   }
 
   // Método para obtener el almacenamiento
