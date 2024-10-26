@@ -64,7 +64,6 @@ export class RegistroPage {
     await alert.present();
   }
 
-  // Método para manejar el botón "Volver"
   volverButton() {
     this.router.navigateByUrl('/login');
   }
@@ -78,7 +77,6 @@ export class RegistroPage {
     if(image.webPath){
       const response = await fetch(image.webPath);
       const blob = await response.blob();
-
       this.imagen = {
         fname: 'foto' + image.format,
         src: image.webPath,

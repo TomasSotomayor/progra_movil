@@ -1,34 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Nuevo viaje</ion-title> <!-- Título centrado y más grande -->
+    <ion-title style="text-align: center; font-size: 28px;">Nuevo viaje</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <!-- Recuadro con los parámetros -->
   <div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #000; border: 5px solid #f5f5f5; border-radius: 10px;">
  
-  <!-- Campo de Costo -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Costo</strong></ion-label>
       <ion-input [(ngModel)]="costo" type="text" placeholder="Ingrese el costo" style="margin-left: 10px;"></ion-input>
     </ion-item>
     
-  <!-- Campo de Fecha -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Fecha</strong></ion-label>
       <ion-input [(ngModel)]="fecha" type="text" placeholder="Ingrese la fecha" style="margin-left: 10px;"></ion-input>
     </ion-item>
     
-  <!-- Campo de Ubicación Origen -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Ubicación Origen</strong></ion-label>
       <ion-input [(ngModel)]="ubicacionorigen" type="text" placeholder="Ingrese la ubicación origen" style="margin-left: 10px;"></ion-input>
     </ion-item>
     
-  <!-- Campo de Ubicación Destino -->
     <ion-item style="margin-bottom: 15px; --background: transparent;">
       <ion-label><strong>Ubicación Destino</strong></ion-label>
       <ion-input [(ngModel)]="ubicaciondestino" type="text" placeholder="Ingrese la ubicación destino" style="margin-left: 10px;"></ion-input>

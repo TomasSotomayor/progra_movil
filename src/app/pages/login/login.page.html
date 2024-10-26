@@ -5,12 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <div class="box">
+
     <div class="image-container">
       <img src="assets/images/logo.png" alt="logo" style="width: 70%; height: 70%; object-fit: cover;">
     </div>
+
     <hr>
+
     <div class="login-container">
       <ion-list>
         <ion-item>
@@ -20,14 +22,18 @@
           <ion-input [(ngModel)]="contrasena" label="Contraseña" type="password"></ion-input>
         </ion-item>
       </ion-list>
+
       <hr>
+
       <ion-button (click)="login()">Acceder</ion-button>
+
       <hr>
+
       <ion-button (click)="rContrasena()">Recuperar contraseña</ion-button>
+
       <hr>
+
       <ion-button (click)="registro()">Regístrate aquí</ion-button>
     </div>
-    <!-- 'inicio/:numero', -->
   </div>
-
 </ion-content>

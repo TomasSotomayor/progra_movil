@@ -1,6 +1,6 @@
 <ion-app>
-  <!-- Menú desplegable -->
   <ion-menu contentId="main-content" side="start">
+
     <ion-header>
       <ion-toolbar color="tertiary">
         <ion-title>Menú</ion-title>
@@ -9,6 +9,7 @@
 
     <ion-content class="ion-padding">
       <ion-list>
+
         <ion-item button (click)="navigateToPagePerfil()">
           <ion-label>Perfil</ion-label>
         </ion-item>
@@ -24,15 +25,16 @@
         <ion-item button (click)="cerrarSesion()">
           <ion-label>Cerrar sesión</ion-label>
         </ion-item>
+
       </ion-list>
     </ion-content>
+
   </ion-menu>
 
-  <!-- Contenido principal -->
   <div class="ion-page" id="main-content">
+
     <ion-header>
       <ion-toolbar>
-        <!-- Botón de menú en la esquina superior izquierda -->
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -42,19 +44,17 @@
 
     <ion-content class="ion-padding">
       <h1>Elija su destino</h1>
-
-      <!-- Card con la animación -->
       <ion-card #card>
         <ion-card-content>Card</ion-card-content>
       </ion-card>
-
     </ion-content>
+
   </div>
 
-  <!-- Animación de carga -->
   <ion-loading
     id="loading"
     message="Cargando..."
     duration="3000"
   ></ion-loading>
+
 </ion-app>

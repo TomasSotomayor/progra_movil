@@ -12,7 +12,6 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Imagen en la parte superior -->
   <div style="display: flex; justify-content: center; margin-top: 40px;">
     <ion-img src="assets/images/anadir.jpg" style="width: 200px; height: 200px; border-radius: 50%;"></ion-img>
   </div>
@@ -49,14 +48,8 @@
       <ion-input type="text" [(ngModel)]="tipo_combustible" placeholder="Ingrese el tipo de combustible"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label><strong>Capacidad de Pasajeros</strong></ion-label>
-      <ion-input type="text" [(ngModel)]="capacidad_pasajeros" type="number" placeholder="Ingrese la capacidad"></ion-input>
-    </ion-item>
-
   </ion-list>
 
-  <!-- Campo para foto -->
   <ion-item>
     <ion-label>Foto</ion-label>
     <img *ngIf="imagen" [src]="imagen.src" height="100" width="100" alt="">
@@ -67,8 +60,8 @@
     </ion-button>
   </ion-item>
 
-  <!-- Botón para agregar vehículo -->
-    <div style="text-align: center; margin-top: 20px;">
+  <div style="text-align: center; margin-top: 20px;">
     <ion-button expand="block" (click)="agregarVehiculo()">Agregar</ion-button>
   </div>
+
 </ion-content>

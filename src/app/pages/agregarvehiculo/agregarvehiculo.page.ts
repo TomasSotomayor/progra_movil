@@ -12,13 +12,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 
 export class AgregarvehiculoPage  {
+  id_usuario: number = 0;
   patente: string = '';
   marca: string = '';
   modelo: string = '';
   anio: number = 0;
   color: string = '';
   tipo_combustible: string = '';
-  capacidad_pasajeros: number = 0;
   imagen: any;
 
   constructor(
@@ -32,19 +32,17 @@ export class AgregarvehiculoPage  {
   }
 
   async agregarVehiculo() {
-    const id_usuario = await this.firebase.obtenerToken();
     const token = await this.firebase.obtenerToken();
-
     if(token) {
       try {
         const req = await this.vehiculoService.addVehiculo({
+          p_id_usuario: this.id_usuario,
           p_patente: this.patente,
           p_marca: this.marca,
           p_modelo: this.modelo,
           p_anio: this.anio,
           p_color: this.color,
           p_tipo_combustible: this.tipo_combustible,
-          p_capacidad_pasajeros: this.capacidad_pasajeros,
           token: token
         },
         this.imagen
@@ -67,7 +65,6 @@ export class AgregarvehiculoPage  {
     if(image.webPath){
       const response = await fetch(image.webPath);
       const blob = await response.blob();
-
       this.imagen = {
         fname: 'foto' + image.format,
         src: image.webPath,

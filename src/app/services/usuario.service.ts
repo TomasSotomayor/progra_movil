@@ -39,7 +39,6 @@ export class UsuarioService {
       throw error;
     }
   }
-
 }
 
 interface dataBodyUsuario {

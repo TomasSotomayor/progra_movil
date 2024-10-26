@@ -1,13 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Perfil</ion-title> <!-- Título centrado y más grande -->
+    <ion-title style="text-align: center; font-size: 28px;">Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <!-- Imagen del perfil centrada y más grande -->
   <div style="display: flex; justify-content: center; margin-top: 20px;">
     <div style="width: 200px; height: 200px; border: 2px solid #ccc; display: flex; justify-content: center; align-items: center;">
       <img src="assets/images/conductor.jpg" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover;" *ngIf="imagen">
@@ -15,7 +13,6 @@
     </div>
   </div>
 
-  <!-- Datos del conductor centrados debajo de la imagen, alineados uno sobre otro -->
   <div style="text-align: center; margin-top: 30px;">
 
     <div style="margin-bottom: 15px;">
@@ -33,6 +30,6 @@
     <div style="margin-bottom: 15px;">
       <ion-label style="font-size: 17px;"><strong>Mi clasificación:</strong> 4.5/5</ion-label>
     </div>
+
   </div>
-  
 </ion-content>

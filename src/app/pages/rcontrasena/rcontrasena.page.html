@@ -12,18 +12,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Marco con borde verde -->
   <div style="border: 2px solid green; padding: 20px; border-radius: 10px; max-width: 400px; margin: 20px auto;">
-    <!-- Campo de correo -->
+
     <ion-item style="--background: transparent;">
       <ion-label position="stacked"><strong>Correo:</strong></ion-label>
       <ion-input type="email" placeholder="Ingrese su e-mail" [(ngModel)]="correo"></ion-input>
     </ion-item>
 
-    <!-- Botón circular de Enviar Correo -->
     <div style="text-align: center; margin-top: 20px;">
       <ion-button shape="round" color="primary" (click)="enviarCorreo()">Enviar Correo</ion-button>
       <ion-button shape="round" color="primary" (click)="volverButton()">Volver</ion-button>
     </div>
+
   </div>
 </ion-content>

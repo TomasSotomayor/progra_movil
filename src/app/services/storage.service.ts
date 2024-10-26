@@ -25,18 +25,11 @@ export class StorageService {
 
   async obtenStorage(){
     const storageData = await this.getItem(llaveUber);
-    
     if (storageData == null) {
       return [];
-      
     }else{
-   
       return JSON.parse(storageData);
     }
-
-
-
   }
 
-  
 }

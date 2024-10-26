@@ -66,19 +66,17 @@ export class InicioPage implements OnInit {
   ionViewDidEnter(): void {
     console.log("view did enter");
     if (this.card) {
-      // Crear la animación de cambio de color
       this.animation = this.animationCtrl
         .create()
         .addElement(this.card.nativeElement)
-        .duration(2000) // Duración de 2 segundos para el cambio de color
-        .iterations(Infinity) // Repetir indefinidamente
-        .direction('alternate') // Alterna entre los colores
+        .duration(2000)
+        .iterations(Infinity)
+        .direction('alternate')
         .keyframes([
           { offset: 0, backgroundColor: 'blue' },
           { offset: 0.5, backgroundColor: 'red' },
           { offset: 1, backgroundColor: 'green' }
         ]);
-
       this.animation.play();
     }
   }

@@ -32,7 +32,6 @@ export class ViajesPage {
       if (!token) {
         throw new Error('No se pudo obtener el token de usuario.');
       }
-
       const viajeData = {
         costo: this.costo,
         fecha: this.fecha,
@@ -40,7 +39,6 @@ export class ViajesPage {
         ubicaciondestino: this.ubicaciondestino,
         token: token,
       };
-
       await this.helper.showAlert("Viaje agregado correctamente.", "Información");
       await this.router.navigateByUrl('listaviajes');
     } catch (error) {
@@ -59,13 +57,11 @@ export class ViajesPage {
       await alert.present();
       return;
     }
-
     const alert = await this.alertController.create({
       header: 'Registro Completado',
       message: '¡Tu registro ha sido completado con éxito!',
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -73,4 +69,3 @@ export class ViajesPage {
     this.router.navigateByUrl('/listaviajes');
   }
 }
-//

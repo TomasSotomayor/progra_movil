@@ -23,8 +23,6 @@ export class LoginPage implements OnInit {
               private helper:HelperService,
               private storage:StorageService,
               private usuarioService:UsuarioService
-
-
             ) { }
 
   ngOnInit() {
@@ -32,7 +30,6 @@ export class LoginPage implements OnInit {
 
 
   async login(){
-
     if (this.correo == "") {
       this.helper.showAlert("Ingrese el correo", "Error de validación");
       return;
@@ -41,19 +38,10 @@ export class LoginPage implements OnInit {
       this.helper.showAlert("Ingrese la contraseña", "Error de validación");
       return;
     }
-    /* if (this.correo == "123" && this.contrasena == '123') {
-      this.router.navigateByUrl("/inicio");
-    }else{
-      alert("Credenciales incorrectas.");
-    } */
-
     const loader = await this.helper.showLoader("Cargando");
     try {
-
-      const reqFirebase = await this.firebase.login(this.correo,this.contrasena);
-
+      const reqFirebase = await this.firebase.login(this.correo,this.contrasena); 
       const token = await reqFirebase.user?.getIdToken();
-
       if (token) {
         this.token = token;
         const req = await this.usuarioService.obtenUsuario({
@@ -63,12 +51,9 @@ export class LoginPage implements OnInit {
         this.usuario = req.data;
         console.log("Data usuario: ", this.usuario[0].id_usuario);
       }
-
       loader.dismiss();
     } catch (error:any) {
-
       let msgerror = "Ocurrió un error al iniciar sesión.";
-
       if(error.code == "auth/invalid-credential1"){
         msgerror = "Credenciales incorrectas.";
       }else if(error.code == "auth/wrong-password1"){
@@ -76,12 +61,9 @@ export class LoginPage implements OnInit {
       }else if(error.code == "auth/invalid-email1"){
         msgerror = "Correo no válido.";
       }
-
-
       this.helper.showAlert(msgerror,"Aceptar");
       loader.dismiss();
     }
-
     const jsonToken =
     [
       {
@@ -90,19 +72,13 @@ export class LoginPage implements OnInit {
         "usuario_correo":this.usuario[0].correo_electronico
       }
     ];
-
     this.storage.agregarToken(jsonToken);
-
-
-
-    //Obtenemos la info que guardamos en storage
     let token = await this.storage.obtenStorage();
     console.log(token[0].nombre);
-
-
     this.router.navigateByUrl("inicio");
   }
 
+  
   rContrasena(){
     this.router.navigateByUrl("rcontrasena");
   }

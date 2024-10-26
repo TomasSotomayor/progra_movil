@@ -11,7 +11,6 @@ export class HelperService {
               private toastController:ToastController
   ) { }
 
-
   async showAlert(msg:string, title:string){
     var alert = await this.alertService.create(
       {
@@ -24,7 +23,6 @@ export class HelperService {
     await alert.present();
     return alert;
   }
-
 
   async showLoader(msg:string){
     var loader = await this.loaderController.create(
@@ -44,33 +42,32 @@ export class HelperService {
      icon:'logo-whatsapp'
     })
     await toast.present();
-   }
+  }
 
-
-   async showConfirm(msg:string){
-     let promise = new Promise<boolean>(async (resolve, reject)=>{
-       var alert = await this.alertService.create(
-         {
-           message:msg,
-           header:"Advertencia",
-           buttons:[
-             {
-               text:"Aceptar",
-               handler: ()=>{
-                 resolve(true)
-               }
-             },
-             {
-               text:"Cancelar",
-               handler: ()=>{
-                 resolve(false)
-               }
-             }
-           ]
-         });
-       await alert.present();
-     });
-     return promise;
-   }
+  async showConfirm(msg:string){
+    let promise = new Promise<boolean>(async (resolve)=>{
+      var alert = await this.alertService.create(
+        {
+          message:msg,
+          header:"Advertencia",
+          buttons:[
+            {
+              text:"Aceptar",
+              handler: ()=>{
+                resolve(true)
+              }
+            },
+            {
+              text:"Cancelar",
+              handler: ()=>{
+                resolve(false)
+              }
+            }
+          ]
+        });
+      await alert.present();
+    });
+    return promise;
+  }
 
 }
