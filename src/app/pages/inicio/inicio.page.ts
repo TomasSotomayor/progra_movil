@@ -84,17 +84,24 @@ export class InicioPage implements OnInit {
   async cerrarSesion() {
     const confirmo = await this.helper.showConfirm("¿Está seguro de que quiere cerrar sesión?");
     if (confirmo) {
-      this.firebase.cerrarSesion();
-      this.router.navigateByUrl('/login');
+      const menu = document.querySelector('ion-menu');
+      if (menu && menu.hasAttribute('opened')) {
+        await menu.close(); // Cerrar el menú si está abierto
+      }
+
       const loading = await this.loadingController.create({
         message: 'Cerrando sesión...',
         duration: 500
       });
       await loading.present();
+
+      // Lógica para cerrar sesión
+      await this.firebase.cerrarSesion();
+
+      setTimeout(() => {
+        this.navCtrl.navigateRoot('/login');
+      }, 500);
     }
-    setTimeout(() => {
-      this.navCtrl.navigateRoot('/login');
-    }, 500);
   }
 
   async navigateToPageViajes() {
