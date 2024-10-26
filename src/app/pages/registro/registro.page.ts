@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { HelperService } from 'src/app/services/helper.service';
+import { StorageService } from 'src/app/services/storage.service'; // Importar el StorageService
 
 @Component({
   selector: 'app-registro',
@@ -23,7 +24,8 @@ export class RegistroPage {
     private usuarioService: UsuarioService,
     private alertController: AlertController,
     private router: Router,
-    private helper: HelperService
+    private helper: HelperService,
+    private storageService: StorageService // Inyectar el StorageService
   ) {}
 
   ngOnInit() {}
@@ -49,6 +51,14 @@ export class RegistroPage {
           },
           this.imagen
         );
+
+        // Almacena los datos del usuario en el StorageService
+        await this.storageService.setItem('usuario', {
+          nombre: this.nombre,
+          correo: this.correo,
+          telefono: this.telefono,
+          imagen: this.imagen ? this.imagen.src : null,
+        });
 
         // Muestra confirmación de registro y redirige
         await this.helper.showAlert("Usuario agregado correctamente.", "Información");

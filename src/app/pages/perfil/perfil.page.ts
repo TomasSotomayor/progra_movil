@@ -22,10 +22,10 @@ export class PerfilPage implements OnInit {
     // Recupera los datos del usuario del servicio de almacenamiento
     const usuario = await this.storageService.getItem('usuario');
     if (usuario) {
-      this.nombre = usuario.nombre;
-      this.correo = usuario.correo;
-      this.telefono = usuario.telefono;
-      this.imagen = usuario.imagen;
+      this.nombre = usuario.p_nombre; // Ajustar a los campos correctos
+      this.correo = usuario.p_correo_electronico; // Ajustar a los campos correctos
+      this.telefono = usuario.p_telefono; // Ajustar a los campos correctos
+      this.imagen = usuario.imagen; // Asegúrate de que la imagen esté guardada correctamente
     }
   }
 
