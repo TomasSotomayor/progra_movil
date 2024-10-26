@@ -1,5 +1,5 @@
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
@@ -19,46 +19,51 @@ export class RegistroPage {
   imagen: any;
 
   constructor(
-    private firebase:FirebaseService,
-    private usuarioService:UsuarioService,
+    private firebase: FirebaseService,
+    private usuarioService: UsuarioService,
     private alertController: AlertController,
     private router: Router,
     private helper: HelperService
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async registro() {
-    const userFirebase = await this.firebase.registro(this.correo,this.contrasena);
-    const token = await userFirebase.user?.getIdToken();
-    if(token){
-      const req = await this.usuarioService.addUsuario({
-          p_correo_electronico:this.correo,
-          p_nombre:this.nombre,
-          p_telefono:this.telefono,
-          token:token
-        },
-        this.imagen
-      );
-    }
-    await this.helper.showAlert("Usuario agregado correctamente.", "Información");
-    await this.router.navigateByUrl('login');
-  }
-
-  async mostrarAlerta() {
+    // Valida que todos los campos estén completos
     if (!this.nombre || !this.correo || !this.telefono || !this.contrasena) {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Por favor, complete todos los campos.',
-        buttons: ['OK']
-      });
-      await alert.present();
+      await this.mostrarAlerta('Error', 'Por favor, complete todos los campos.');
       return;
     }
+
+    try {
+      const userFirebase = await this.firebase.registro(this.correo, this.contrasena);
+      const token = await userFirebase.user?.getIdToken();
+
+      if (token) {
+        const req = await this.usuarioService.addUsuario(
+          {
+            p_correo_electronico: this.correo,
+            p_nombre: this.nombre,
+            p_telefono: this.telefono,
+            token: token
+          },
+          this.imagen
+        );
+
+        // Muestra confirmación de registro y redirige
+        await this.helper.showAlert("Usuario agregado correctamente.", "Información");
+        await this.router.navigateByUrl('login');
+      }
+    } catch (error) {
+      console.error("Error en el registro:", error);
+      await this.mostrarAlerta('Error', 'Hubo un problema al registrar el usuario. Inténtalo de nuevo.');
+    }
+  }
+
+  async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: 'Registro Completado',
-      message: '¡Tu registro ha sido completado con éxito!',
+      header: header,
+      message: message,
       buttons: ['OK']
     });
     await alert.present();
@@ -69,21 +74,27 @@ export class RegistroPage {
   }
 
   takePicture = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
-    });
-    if(image.webPath){
-      const response = await fetch(image.webPath);
-      const blob = await response.blob();
-      this.imagen = {
-        fname: 'foto' + image.format,
-        src: image.webPath,
-        file: blob
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri
+      });
+
+      if (image.webPath) {
+        const response = await fetch(image.webPath);
+        const blob = await response.blob();
+        this.imagen = {
+          fname: 'foto.' + image.format,
+          src: image.webPath,
+          file: blob
+        };
       }
+
+      this.imagen.src = image.webPath;
+    } catch (error) {
+      console.error("Error al tomar la foto:", error);
+      await this.mostrarAlerta('Error', 'No se pudo tomar la foto. Inténtalo de nuevo.');
     }
-    var imageUrl = image.webPath;
-    this.imagen.src = imageUrl;
   };
 }
