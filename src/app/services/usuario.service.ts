@@ -24,21 +24,20 @@ export class UsuarioService {
       return response;
     } catch(error) {
       throw error;
-    }
-  }
+  }}
 
   async obtenUsuario(data:dataGetUser) {
     try {
       const params = {
         p_correo: data.p_correo,
-        token:data.token
+        token: data.token
       }
       const response = await lastValueFrom(this.http.get<any>(environment.apiUrl + 'user/obtener', {params}));
       return response;
     } catch (error) {
       throw error;
-    }
-  }
+  }}
+
 }
 
 interface dataBodyUsuario {

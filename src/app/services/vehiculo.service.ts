@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class VehiculoService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   
   async addVehiculo(datosVehiculo:dataBodyVehiculo, imgFileUser:any) {
     try {
@@ -28,8 +28,7 @@ export class VehiculoService {
     } catch(error) {
       console.error('Error al agregar vehículo: ', error)
       throw error;
-    }
-  }
+  }}
 
   async obtenVehiculo(data:dataGetVehiculo) {
     try {
@@ -41,8 +40,8 @@ export class VehiculoService {
       return response;
     } catch (error) {
       throw error;
-    }
-  }
+  }}
+
 }
 
 interface dataBodyVehiculo {

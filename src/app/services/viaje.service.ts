@@ -26,8 +26,7 @@ export class ViajeService {
     } catch(error) {
       console.error('Error al agregar vehículo: ', error)
       throw error;
-    }
-  }
+  }}
 
   async obtenViaje(data:dataGetViaje) {
     try {
@@ -40,8 +39,8 @@ export class ViajeService {
       return response;
     } catch (error) {
       throw error;
-    }
-  }
+  }}
+
 }
 
 interface dataBodyViaje {

@@ -12,24 +12,21 @@ export class FirebaseService {
       return await this.fire.signInWithEmailAndPassword(email, contrasena);
     } catch (error: any) {
       throw error;
-    }
-  }
+  }}
 
   async registro(email: string, contrasena: string) {
     try {
       return await this.fire.createUserWithEmailAndPassword(email, contrasena);
     } catch (error) {
       throw error;
-    }
-  }
+  }}
 
   async resetPassWord(email: string) {
     try {
       await this.fire.sendPasswordResetEmail(email);
     } catch (error) {
       throw error;
-    }
-  }
+  }}
 
   async cerrarSesion() {
     await this.fire.signOut();

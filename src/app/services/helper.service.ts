@@ -12,25 +12,21 @@ export class HelperService {
   ) { }
 
   async showAlert(msg:string, title:string){
-    var alert = await this.alertService.create(
-      {
-        cssClass:"",
-        message:msg,
-        header:title,
-        buttons:['Aceptar']
-      }
-    )
+    var alert = await this.alertService.create({
+      cssClass:"",
+      message:msg,
+      header:title,
+      buttons:['Aceptar']
+    })
     await alert.present();
     return alert;
   }
 
   async showLoader(msg:string){
-    var loader = await this.loaderController.create(
-      {
-        message:msg,
-        translucent:true
-      }
-    )
+    var loader = await this.loaderController.create({
+      message:msg,
+      translucent:true
+    })
     await loader.present();
     return loader;
   }
@@ -46,25 +42,19 @@ export class HelperService {
 
   async showConfirm(msg:string){
     let promise = new Promise<boolean>(async (resolve)=>{
-      var alert = await this.alertService.create(
-        {
+      var alert = await this.alertService.create({
           message:msg,
           header:"Advertencia",
-          buttons:[
-            {
+          buttons:[{
               text:"Aceptar",
               handler: ()=>{
                 resolve(true)
-              }
-            },
+            }},
             {
               text:"Cancelar",
               handler: ()=>{
                 resolve(false)
-              }
-            }
-          ]
-        });
+      }}]});
       await alert.present();
     });
     return promise;
