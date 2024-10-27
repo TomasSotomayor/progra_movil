@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { HelperService } from 'src/app/services/helper.service';
-import { StorageService } from 'src/app/services/storage.service'; // Importar el StorageService
 
 @Component({
   selector: 'app-registro',
@@ -25,13 +24,11 @@ export class RegistroPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private helper: HelperService,
-    private storageService: StorageService // Inyectar el StorageService
   ) {}
 
   ngOnInit() {}
 
   async registro() {
-    // Valida que todos los campos estén completos
     if (!this.nombre || !this.correo || !this.telefono || !this.contrasena) {
       await this.mostrarAlerta('Error', 'Por favor, complete todos los campos.');
       return;
@@ -51,16 +48,6 @@ export class RegistroPage implements OnInit {
           },
           this.imagen
         );
-
-        // Almacena los datos del usuario en el StorageService
-        await this.storageService.setItem('usuario', {
-          nombre: this.nombre,
-          correo: this.correo,
-          telefono: this.telefono,
-          imagen: this.imagen ? this.imagen.src : null, // Verifica si la imagen está disponible
-        });
-
-        // Muestra confirmación de registro y redirige
         await this.helper.showAlert("Usuario agregado correctamente.", "Información");
         await this.router.navigateByUrl('login');
       }

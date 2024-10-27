@@ -12,7 +12,6 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   correo:string = "to.sotomayor@duocuc.cl";
   contrasena:string = "123456";
   token:string = "";
@@ -27,7 +26,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
 
   async login(){
     if (this.correo == "") {
@@ -77,7 +75,6 @@ export class LoginPage implements OnInit {
     console.log(token[0].nombre);
     this.router.navigateByUrl("inicio");
   }
-
   
   rContrasena(){
     this.router.navigateByUrl("rcontrasena");

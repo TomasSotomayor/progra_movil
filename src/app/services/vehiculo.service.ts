@@ -13,11 +13,11 @@ export class VehiculoService {
   async addVehiculo(datosVehiculo:dataBodyVehiculo, imgFileUser:any) {
     try {
       const formData = new FormData();
-      formData.append('p_id_usuario', datosVehiculo.p_id_usuario.toString());
+      formData.append('p_id_usuario', datosVehiculo.p_id_usuario?.toString());
       formData.append('p_patente', datosVehiculo.p_patente);
       formData.append('p_marca', datosVehiculo.p_marca);
       formData.append('p_modelo', datosVehiculo.p_modelo);
-      formData.append('p_anio', datosVehiculo.p_anio.toString());
+      formData.append('p_anio', datosVehiculo.p_anio?.toString());
       formData.append('p_color', datosVehiculo.p_color);
       formData.append('p_tipo_combustible', datosVehiculo.p_tipo_combustible);
       if(datosVehiculo.token) {

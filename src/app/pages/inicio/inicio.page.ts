@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController, LoadingController, AnimationController, Animation } from '@ionic/angular';
-
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -86,18 +85,14 @@ export class InicioPage implements OnInit {
     if (confirmo) {
       const menu = document.querySelector('ion-menu');
       if (menu && menu.hasAttribute('opened')) {
-        await menu.close(); // Cerrar el menú si está abierto
+        await menu.close();
       }
-
       const loading = await this.loadingController.create({
         message: 'Cerrando sesión...',
         duration: 500
       });
       await loading.present();
-
-      // Lógica para cerrar sesión
       await this.firebase.cerrarSesion();
-
       setTimeout(() => {
         this.navCtrl.navigateRoot('/login');
       }, 500);
