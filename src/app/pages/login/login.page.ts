@@ -62,14 +62,11 @@ export class LoginPage implements OnInit {
       this.helper.showAlert(msgerror,"Aceptar");
       loader.dismiss();
     }
-    const jsonToken =
-    [
-      {
-        "token":this.token,
-        "usuario_id":this.usuario[0].id_usuario,
-        "usuario_correo":this.usuario[0].correo_electronico
-      }
-    ];
+    const jsonToken = [{
+      "token":this.token,
+      "usuario_id":this.usuario[0].id_usuario,
+      "usuario_correo":this.usuario[0].correo_electronico
+    }];
     this.storage.agregarToken(jsonToken);
     let token = await this.storage.obtenStorage();
     console.log(token[0].nombre);

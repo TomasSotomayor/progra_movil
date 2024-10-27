@@ -1,31 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button (click)="volver()" ></ion-back-button>
-    </ion-buttons>
-    <ion-title>Lista de Viajes</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title style="text-align: center; font-size: 28px;">Registro de Vehículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor="let viaje of viajes">
-      <ion-card>
-        <img [src]="viaje.imagen" alt="Imagen del viaje" *ngIf="viaje.imagen" />
-        <ion-card-header>
-          <ion-card-subtitle>{{ viaje.fecha }}</ion-card-subtitle>
-          <ion-card-title>{{ viaje.ubicacionorigen }} - {{ viaje.ubicaciondestino }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <strong>Costo: </strong>${{ viaje.costo }}
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+<ion-content [fullscreen]="true" style="background-color: #808080;">
+  <div style="background-color: black; color: yellow; padding: 20px; border-radius: 10px; border: 2px solid yellow; max-width: 400px; margin: 20px auto;">
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="navigateToPageViajes()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Costo</strong></ion-label>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Fecha</strong></ion-label>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Ubicación de Origen</strong></ion-label>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px; --background: transparent;">
+      <ion-label><strong>Ubicación de Destino</strong></ion-label>
+    </ion-item>
+
+    <ion-item button (click)="navigateToPageViajes()">
+      <ion-label>Agregar vehículo</ion-label>
+    </ion-item>
+
+  </div>
 </ion-content>

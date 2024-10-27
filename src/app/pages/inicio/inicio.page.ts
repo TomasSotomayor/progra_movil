@@ -77,8 +77,7 @@ export class InicioPage implements OnInit {
           { offset: 1, backgroundColor: 'green' }
         ]);
       this.animation.play();
-    }
-  }
+  }}
 
   async cerrarSesion() {
     const confirmo = await this.helper.showConfirm("¿Está seguro de que quiere cerrar sesión?");
@@ -96,8 +95,7 @@ export class InicioPage implements OnInit {
       setTimeout(() => {
         this.navCtrl.navigateRoot('/login');
       }, 500);
-    }
-  }
+  }}
 
   async navigateToPageViajes() {
     const loading = await this.loadingController.create({

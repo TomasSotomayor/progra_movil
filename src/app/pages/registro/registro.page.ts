@@ -33,20 +33,16 @@ export class RegistroPage implements OnInit {
       await this.mostrarAlerta('Error', 'Por favor, complete todos los campos.');
       return;
     }
-
     try {
       const userFirebase = await this.firebase.registro(this.correo, this.contrasena);
       const token = await userFirebase.user?.getIdToken();
-
       if (token) {
-        const req = await this.usuarioService.addUsuario(
-          {
-            p_correo_electronico: this.correo,
-            p_nombre: this.nombre,
-            p_telefono: this.telefono,
-            token: token
-          },
-          this.imagen
+        const req = await this.usuarioService.addUsuario({
+          p_correo_electronico: this.correo,
+          p_nombre: this.nombre,
+          p_telefono: this.telefono,
+          token: token
+          }, this.imagen
         );
         await this.helper.showAlert("Usuario agregado correctamente.", "Información");
         await this.router.navigateByUrl('login');
@@ -77,7 +73,6 @@ export class RegistroPage implements OnInit {
         allowEditing: true,
         resultType: CameraResultType.Uri
       });
-
       if (image.webPath) {
         const response = await fetch(image.webPath);
         const blob = await response.blob();
@@ -87,11 +82,9 @@ export class RegistroPage implements OnInit {
           file: blob
         };
       }
-
       this.imagen.src = image.webPath;
     } catch (error) {
       console.error("Error al tomar la foto:", error);
       await this.mostrarAlerta('Error', 'No se pudo tomar la foto. Inténtalo de nuevo.');
-    }
-  };
+  }};
 }

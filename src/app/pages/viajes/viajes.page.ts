@@ -54,8 +54,7 @@ export class ViajesPage implements OnInit {
     } catch (error) {
       console.error("Error al agregar viaje: ", error);
       await this.helper.showAlert("Ocurrió un error al agregar el viaje","Error");
-    }
-  }
+  }}
 
   volver() {
     this.navCtrl.navigateBack('/listaviajes'); // Redirige a la vista principal.

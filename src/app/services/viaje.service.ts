@@ -29,10 +29,11 @@ export class ViajeService {
     }
   }
 
-  async obtenVehiculo(data:dataGetViaje) {
+  async obtenViaje(data:dataGetViaje) {
     try {
       const params = {
         p_id: data.p_id,
+        p_id_usuario: data.p_id_usuario,
         token: data.token
       }
       const response = await lastValueFrom(this.http.get<any>(environment.apiUrl + 'viaje/obtener', {params}));

@@ -55,8 +55,7 @@ export class AgregarvehiculoPage  {
     } catch (error) {
       console.error("Error al agregar vehículo: ", error);
       await this.helper.showAlert("Ocurrió un error al agregar el vehículo","Error");
-    }
-  }
+  }}
 
   takePicture = async () => {
     const image = await Camera.getPhoto({
@@ -71,8 +70,7 @@ export class AgregarvehiculoPage  {
         fname: 'foto' + image.format,
         src: image.webPath,
         file: blob
-      }
-    }
+    }}
     var imageUrl = image.webPath;
     this.imagen.src = imageUrl;
   };
