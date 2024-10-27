@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { NavController } from '@ionic/angular';
-import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-viajes',
@@ -16,6 +14,7 @@ import { Preferences } from '@capacitor/preferences';
 export class ViajesPage implements OnInit {
   id_usuario: number = 0;
   id_vehiculo: number = 0;
+  id_estado: number = 1;
   costo: number = 0;
   fecha: string = '';
   ubicacion_origen: string = '';
@@ -42,11 +41,12 @@ export class ViajesPage implements OnInit {
     try {
       const req = await this.viajesService.addViaje({
         'p_id_usuario': tokenDatos[0].usuario_id,
+        'p_id_vehiculo':tokenDatos[0].vehiculo_id,
+        'p_id_estado': this.id_estado,
+        'p_costo': this.costo,
+        'p_fecha': this.fecha,
         'p_ubicacion_origen': this.ubicacion_origen,
         'p_ubicacion_destino': this.ubicacion_destino,
-        'p_costo': this.costo,
-        'p_id_vehiculo':tokenDatos[0].vehiculo_id,
-        'p_fecha': this.fecha,
         'token': tokenDatos[0].token
       });
       await this.helper.showAlert("Viaje agregado correctamente.", "Información");
