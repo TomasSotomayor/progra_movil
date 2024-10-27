@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class VehiculoService {
-
   constructor(private http: HttpClient) { }
   
   async addVehiculo(datosVehiculo:dataBodyVehiculo, imgFileUser:any) {

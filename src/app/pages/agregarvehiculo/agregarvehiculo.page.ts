@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -27,7 +26,6 @@ export class AgregarvehiculoPage  {
     private vehiculoService: VehiculoService,
     private router: Router,
     private helper: HelperService,
-    private firebase: FirebaseService,
     private usuarioService: UsuarioService,
     private storage: StorageService
   ) { }
@@ -52,7 +50,6 @@ export class AgregarvehiculoPage  {
         'p_tipo_combustible': this.tipo_combustible,
         'token': tokenDatos[0].token
       }, this.imagen);
-      console.log("A7")
       await this.helper.showAlert("Vehículo agregado correctamente.", "Información");
       this.router.navigateByUrl('inicio');
     } catch (error) {
