@@ -40,9 +40,13 @@
       <ion-label><strong>Capacidad de Pasajeros</strong></ion-label>
     </ion-item>
 
-    <ion-item button (click)="navigateToPageRegistrarVehiculo()">
-      <ion-label>Agregar vehículo</ion-label>
-    </ion-item>
-
   </div>
+
+  <!-- Botón de agregar vehículo debajo del recuadro -->
+  <div style="text-align: center; margin-top: 20px;">
+    <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
+      Agregar Vehículo
+    </ion-button>
+  </div>
+
 </ion-content>
