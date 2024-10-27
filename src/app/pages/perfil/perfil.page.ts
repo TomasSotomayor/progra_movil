@@ -22,23 +22,26 @@ export class PerfilPage implements OnInit {
 
   async ngOnInit() {
     let tokenDatos = await this.storageService.obtenStorage();
-    const req = await this.usuarioService.obtenUsuario({
-      p_correo: tokenDatos[0].usuario_correo,
-      token: tokenDatos[0].token
-    });
-    tokenDatos[0].nombre
-    tokenDatos[0].
-    tokenDatos[0].token
-    tokenDatos[0].token
 
-    const usuario = await this.storageService.getItem('usuario');
-    if (usuario) {
-      this.nombre = usuario.nombre;
-      this.correo = usuario.correo;
-      this.telefono = usuario.telefono;
-      this.imagen = usuario.imagen;
-      console.log('Imagen cargada:', this.imagen);
-  }}
+    // Validación para evitar errores al acceder a tokenDatos[0]
+    if (tokenDatos && tokenDatos.length > 0) {
+      const req = await this.usuarioService.obtenUsuario({
+        p_correo: tokenDatos[0].usuario_correo,
+        token: tokenDatos[0].token
+      });
+
+      const usuario = await this.storageService.getItem('usuario');
+      if (usuario) {
+        this.nombre = usuario.nombre;
+        this.correo = usuario.correo;
+        this.telefono = usuario.telefono;
+        this.imagen = usuario.imagen;
+        console.log('Imagen cargada:', this.imagen);
+      }
+    } else {
+      console.warn("El array tokenDatos está vacío o es indefinido.");
+    }
+  }
 
   volverButton() {
     this.navCtrl.back();
