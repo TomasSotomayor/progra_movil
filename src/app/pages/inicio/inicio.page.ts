@@ -54,6 +54,18 @@ export class InicioPage implements OnInit {
     });
     this.usuario = req.data;
     console.log("Data inicio usuario: ", this.usuario);
+
+    // Verifica que haya un usuario disponible antes de acceder a sus propiedades
+    if (this.usuario.length > 0) {
+      await this.storage.setItem('usuario', {
+        nombre: this.usuario[0].nombre,
+        correo: this.usuario[0].correo_electronico, // Cambiado a correo_electronico
+        telefono: this.usuario[0].telefono,
+        imagen: this.usuario[0].imagen_usuario // Cambiado a imagen_usuario
+      });
+    } else {
+      console.error("No se encontró ningún usuario.");
+    }
   }
 
   async loadViajes() {
@@ -77,7 +89,8 @@ export class InicioPage implements OnInit {
           { offset: 1, backgroundColor: 'green' }
         ]);
       this.animation.play();
-  }}
+    }
+  }
 
   async cerrarSesion() {
     const confirmo = await this.helper.showConfirm("¿Está seguro de que quiere cerrar sesión?");
@@ -95,7 +108,8 @@ export class InicioPage implements OnInit {
       setTimeout(() => {
         this.navCtrl.navigateRoot('/login');
       }, 500);
-  }}
+    }
+  }
 
   async navigateToPageViajes() {
     const loading = await this.loadingController.create({

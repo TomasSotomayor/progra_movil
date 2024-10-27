@@ -31,11 +31,11 @@ export class PerfilPage implements OnInit {
       });
 
       const usuario = await this.storageService.getItem('usuario');
-      if (usuario) {
+      if (usuario && usuario.correo === tokenDatos[0].usuario_correo) {
         this.nombre = usuario.nombre;
         this.correo = usuario.correo;
         this.telefono = usuario.telefono;
-        this.imagen = usuario.imagen;
+        this.imagen = usuario.imagen; // URL de la imagen obtenida y cargada
         console.log('Imagen cargada:', this.imagen);
       }
     } else {
