@@ -26,6 +26,7 @@ export class PerfilPage implements OnInit {
       this.correo = usuario.correo; // Asegúrate de que la propiedad es 'correo'
       this.telefono = usuario.telefono; // Asegúrate de que la propiedad es 'telefono'
       this.imagen = usuario.imagen; // Asegúrate de que la propiedad es 'imagen'
+      console.log('Imagen cargada:', this.imagen); // Agrega un log para verificar el valor de imagen
     }
   }
 

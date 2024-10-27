@@ -3,13 +3,27 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ViajeService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  // Método para obtener todos los viajes
+  async getViajes(parToken: string): Promise<any[]> {
+    try {
+      const params = { token: parToken }; // Se debe pasar el token como parámetro
+      const response = await lastValueFrom(this.http.get<any[]>(`${environment.apiUrl}viaje/obtener`, { params }));
+      return response;
+    } catch (error) {
+      console.error('Error al obtener los viajes:', error);
+      throw error; // Propaga el error para manejo posterior
+    }
+  }
 
+  // Método para obtener un viaje específico
   async obtenViaje(parToken: string): Promise<any> {
     try {
       const params = { token: parToken };
@@ -21,7 +35,8 @@ export class ViajeService {
     }
   }
 
-  async registroViaje(datosViaje: DataBodyViaje): Promise<any> {
+  // Método para agregar un viaje
+  async agregarViaje(datosViaje: DataBodyViaje): Promise<any> {
     try {
       const formData = new FormData();
       formData.append('p_costo', datosViaje.p_costo.toString());
@@ -31,10 +46,10 @@ export class ViajeService {
       if (datosViaje.token) {
         formData.append('token', datosViaje.token);
       }
-      const response = await lastValueFrom(this.http.post<any>(`${environment.apiUrl}user/agregar`, formData));
+      const response = await lastValueFrom(this.http.post<any>(`${environment.apiUrl}viaje/agregar`, formData));
       return response;
     } catch (error) {
-      console.error('Error al registrar el viaje:', error);
+      console.error('Error al agregar el viaje:', error);
       throw error;
     }
   }

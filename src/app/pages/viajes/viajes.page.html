@@ -1,38 +1,53 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Nuevo viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="volver()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Viajes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let viaje of viajes">
+      <ion-card>
+        <img [src]="viaje.imagen" alt="Imagen del viaje" *ngIf="viaje.imagen" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ viaje.fecha }}</ion-card-subtitle>
+          <ion-card-title>{{ viaje.ubicacionorigen }} - {{ viaje.ubicaciondestino }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <strong>Costo: </strong>${{ viaje.costo }}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
-  <div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #000; border: 5px solid #f5f5f5; border-radius: 10px;">
- 
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Costo</strong></ion-label>
-      <ion-input [(ngModel)]="costo" type="text" placeholder="Ingrese el costo" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-    
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Fecha</strong></ion-label>
-      <ion-input [(ngModel)]="fecha" type="text" placeholder="Ingrese la fecha" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-    
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Ubicación Origen</strong></ion-label>
-      <ion-input [(ngModel)]="ubicacionorigen" type="text" placeholder="Ingrese la ubicación origen" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-    
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Ubicación Destino</strong></ion-label>
-      <ion-input [(ngModel)]="ubicaciondestino" type="text" placeholder="Ingrese la ubicación destino" style="margin-left: 10px;"></ion-input>
-    </ion-item>
-    
-    <div style="text-align: center; margin-top: 20px;">
-      <ion-button expand="block" color="light" (click)="addViaje()">Registrar viaje</ion-button>
-    </div>
-
-  </div>
-
+  <!-- Recuadro para ingresar información -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agregar Viaje</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (submit)="guardarViaje()">
+        <ion-item>
+          <ion-label position="stacked">Costo</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoViaje.p_costo" name="costo" placeholder="Ingrese el costo" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Fecha</ion-label>
+          <ion-input type="date" [(ngModel)]="nuevoViaje.p_fecha" name="fecha" placeholder="Seleccione la fecha" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Ubicación Origen</ion-label>
+          <ion-input [(ngModel)]="nuevoViaje.p_ubicacionorigen" name="ubicacionorigen" placeholder="Ingrese la ubicación de origen" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Ubicación Destino</ion-label>
+          <ion-input [(ngModel)]="nuevoViaje.p_ubicaciondestino" name="ubicaciondestino" placeholder="Ingrese la ubicación de destino" required></ion-input>
+        </ion-item>
+        <ion-button expand="full" type="submit" color="primary">Guardar Viaje</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

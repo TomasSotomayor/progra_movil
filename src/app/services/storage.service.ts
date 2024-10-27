@@ -26,10 +26,15 @@ export class StorageService {
     await this.setItem(llaveUber, dataJson);
   }
 
-  // Método para obtener el almacenamiento
-  async obtenStorage() {
+  // Método para obtener el almacenamiento de usuario
+  async obtenStorage(): Promise<any> {
     const storageData = await this.getItem(llaveUber);
-    return storageData ? storageData : [];
+    return storageData ? storageData : {};
+  }
+
+  // Método para guardar el usuario en el almacenamiento
+  async guardarUsuario(usuario: { nombre: string, correo: string, telefono: string, imagen?: string }) {
+    await this.setItem('usuario', usuario);
   }
 
   // Método para eliminar un item del almacenamiento (opcional)

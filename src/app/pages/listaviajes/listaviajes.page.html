@@ -1,40 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button slot="start"></ion-back-button>
-    <ion-title>Viajes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="volver()" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de Viajes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-card>
-    <img alt="Jardín japonés" src="/assets/images/destino1.jpg"/>
-    <ion-card-header>
-      <ion-card-subtitle>18-09-2024</ion-card-subtitle>
-      <ion-card-title>Jardín Japonés</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <img alt="Fantasilandia" src="/assets/images/destino2.jpg"/>
-    <ion-card-header>
-      <ion-card-subtitle>19-09-2024</ion-card-subtitle>
-      <ion-card-title>Fantasilandia</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <img alt="MIM" src="/assets/images/destino3.jpg"/>
-    <ion-card-header>
-      <ion-card-subtitle>20-09-2024</ion-card-subtitle>
-      <ion-card-title>Museo Interactivo Mirador</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let viaje of viajes">
+      <ion-card>
+        <img [src]="viaje.imagen" alt="Imagen del viaje" *ngIf="viaje.imagen" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ viaje.fecha }}</ion-card-subtitle>
+          <ion-card-title>{{ viaje.ubicacionorigen }} - {{ viaje.ubicaciondestino }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <strong>Costo: </strong>${{ viaje.costo }}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="navigateToPageViajes()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
