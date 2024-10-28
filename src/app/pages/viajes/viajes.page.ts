@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ViajeService } from 'src/app/services/viaje.service';
 import { NavController } from '@ionic/angular';
+import { UserModel } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-viajes',
@@ -14,11 +15,12 @@ import { NavController } from '@ionic/angular';
 export class ViajesPage implements OnInit {
   id_usuario: number = 0;
   id_vehiculo: number = 0;
-  id_estado: number = 1;
   costo: number = 0;
-  fecha: string = '';
   ubicacion_origen: string = '';
   ubicacion_destino: string = '';
+  usuario: UserModel[] = [];
+  vehiculoSelec: string = "";
+  viaje: any[] = [];
 
   constructor(
     private navCtrl: NavController,
@@ -26,37 +28,58 @@ export class ViajesPage implements OnInit {
     private router: Router,
     private helper: HelperService,
     private usuarioService: UsuarioService,
-    private storage: StorageService
+    private storage: StorageService,
+    private viajeService: ViajeService
   ) {}
 
   ngOnInit() {
+    this.loadUsuario();
+  }
+
+  iChange(event:any) {
+    this.id_vehiculo = event.detail.value.id_vehiculo;
+  }
+
+  compareWith(a:any, b:any) {
+    return a && b ? a.id === b.id : a === b;
+  }
+
+  async loadUsuario() {
+    let tokenDatos = await this.storage.obtenStorage();
+    const req = await this.usuarioService.obtenUsuario({
+      p_correo: tokenDatos[0].usuario_correo,
+      token: tokenDatos[0].token
+    });
+    this.usuario = req.data;
+  }
+
+  async loadViaje() {
+    let tokenDatos = await this.storage.obtenStorage();
+    const req = await this.viajeService.obtenViaje(tokenDatos[0].token)
+    this.viaje = req.data;
   }
 
   async agregarViaje() {
     let tokenDatos = await this.storage.obtenStorage();
-    const reqA = await this.usuarioService.obtenUsuario({
-      p_correo: tokenDatos[0].usuario_correo,
-      token: tokenDatos[0].token
-    });
     try {
+      console.log("Vehiculo: ", this.vehiculoSelec)
+      console.log("Usuario: ", tokenDatos[0].usuario_id)
       const req = await this.viajesService.addViaje({
         'p_id_usuario': tokenDatos[0].usuario_id,
-        'p_id_vehiculo':tokenDatos[0].vehiculo_id,
-        'p_id_estado': this.id_estado,
+        'p_id_vehiculo': parseInt(this.vehiculoSelec),
         'p_costo': this.costo,
-        'p_fecha': this.fecha,
         'p_ubicacion_origen': this.ubicacion_origen,
         'p_ubicacion_destino': this.ubicacion_destino,
         'token': tokenDatos[0].token
       });
       await this.helper.showAlert("Viaje agregado correctamente.", "Información");
-      this.router.navigateByUrl('listaviajes');
+      this.router.navigateByUrl('/listaviajes');
     } catch (error) {
       console.error("Error al agregar viaje: ", error);
       await this.helper.showAlert("Ocurrió un error al agregar el viaje","Error");
   }}
 
   volver() {
-    this.navCtrl.navigateBack('/listaviajes'); // Redirige a la vista principal.
+    this.navCtrl.navigateBack('/listaviajes');
   }
 }

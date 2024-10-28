@@ -19,23 +19,25 @@
   <ion-list style="padding: 20px;">
 
     <ion-item>
-      <ion-label position="floating">Costo</ion-label>
+      <ion-label>Costo</ion-label>
       <ion-input type="number" [(ngModel)]="costo" placeholder="Ingrese el costo"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Fecha</ion-label>
-      <ion-input type="text" [(ngModel)]="fecha" placeholder="Ingrese la fecha"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Ubicación de origen</ion-label>
+      <ion-label>Ubicación de origen</ion-label>
       <ion-input type="text" [(ngModel)]="ubicacion_origen" placeholder="Ingrese la ubicación de origen"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Ubicación de destino</ion-label>
+      <ion-label>Ubicación de destino</ion-label>
       <ion-input type="text" [(ngModel)]="ubicacion_destino" placeholder="Ingrese la ubicación de destino"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vehículo</ion-label>
+        <ion-select [(ngModel)]="vehiculoSelec" (ionChange)="iChange($event)" placeholder="Seleccione su vehículo: ">
+          <ion-select-option *ngFor="let vehiculo of usuario" [value]="vehiculo">Patente: {{ vehiculo.patente }}</ion-select-option>
+        </ion-select>
     </ion-item>
 
   </ion-list>

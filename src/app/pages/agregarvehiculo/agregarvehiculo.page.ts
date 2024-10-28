@@ -51,7 +51,7 @@ export class AgregarvehiculoPage  {
         'token': tokenDatos[0].token
       }, this.imagen);
       await this.helper.showAlert("Vehículo agregado correctamente.", "Información");
-      this.router.navigateByUrl('inicio');
+      this.router.navigateByUrl('/vehiculo');
     } catch (error) {
       console.error("Error al agregar vehículo: ", error);
       await this.helper.showAlert("Ocurrió un error al agregar el vehículo","Error");

@@ -14,9 +14,7 @@ export class ViajeService {
       const formData = new FormData();
       formData.append('p_id_usuario', datosViaje.p_id_usuario?.toString());
       formData.append('p_id_vehiculo', datosViaje.p_id_vehiculo?.toString());
-      formData.append('p_id_estado', datosViaje.p_id_estado?.toString());
       formData.append('p_costo', datosViaje.p_costo?.toString());
-      formData.append('p_fecha', datosViaje.p_fecha);
       formData.append('p_ubicacion_origen', datosViaje.p_ubicacion_origen);
       formData.append('p_ubicacion_destino', datosViaje.p_ubicacion_destino);
       if(datosViaje.token) {
@@ -25,7 +23,7 @@ export class ViajeService {
       const response = await lastValueFrom(this.http.post<any>(environment.apiUrl + 'viaje/agregar', formData));
       return response;
     } catch(error) {
-      console.error('Error al agregar vehículo: ', error)
+      console.error('Error al agregar viaje: ', error)
       throw error;
   }}
 
@@ -47,11 +45,9 @@ export class ViajeService {
 interface dataBodyViaje {
   p_id_usuario: number;
   p_id_vehiculo: number;
-  p_id_estado: number;
   p_costo: number;
   p_ubicacion_origen: string;
   p_ubicacion_destino: string;
-  p_fecha: string;
   token?: string;
 }
 
