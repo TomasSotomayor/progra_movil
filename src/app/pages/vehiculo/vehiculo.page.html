@@ -6,47 +6,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" style="background-color: #808080;">
-  <div style="background-color: black; color: yellow; padding: 20px; border-radius: 10px; border: 2px solid yellow; max-width: 400px; margin: 20px auto;">
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Imagen</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Marca</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Modelo</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Color</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Patente</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Año</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Tipo de Combustible</strong></ion-label>
-    </ion-item>
-
-    <ion-item style="margin-bottom: 15px; --background: transparent;">
-      <ion-label><strong>Capacidad de Pasajeros</strong></ion-label>
-    </ion-item>
-
-  </div>
-
-  <!-- Botón de agregar vehículo debajo del recuadro -->
+  <!-- Botón de agregar vehículo -->
   <div style="text-align: center; margin-top: 20px;">
     <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
       Agregar Vehículo
     </ion-button>
   </div>
 
+  <!-- Lista de vehículos -->
+  <ion-list>
+    <ion-item *ngFor="let vehiculo of vehiculos" style="margin: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: #f4f4f4;">
+      <ion-avatar slot="start">
+        <img [src]="vehiculo.imagen_vehiculo || 'assets/placeholder-car.png'" alt="Imagen Vehículo" style="width: 50px; height: 50px; object-fit: cover;">
+      </ion-avatar>
+      <ion-label style="flex: 1; padding-left: 10px;">
+        <h2>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h2>
+        <p><strong>Color:</strong> {{ vehiculo.color }}</p>
+        <p><strong>Patente:</strong> {{ vehiculo.patente }}</p>
+        <p><strong>Año:</strong> {{ vehiculo.anio }}</p>
+        <p><strong>Combustible:</strong> {{ vehiculo.tipo_combustible }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
