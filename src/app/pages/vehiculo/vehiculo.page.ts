@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -11,16 +11,22 @@ import { Subscription } from 'rxjs';
   templateUrl: './vehiculo.page.html',
   styleUrls: ['./vehiculo.page.scss'],
 })
-export class VehiculoPage implements OnInit {
+export class VehiculoPage implements OnInit, OnDestroy {
   vehiculos: any[] = [];
   token: string | null = null;
   vehiculoSub: Subscription | null = null;
 
-  constructor(private vehiculoService: VehiculoService, private router: Router) {
+  constructor(
+    private vehiculoService: VehiculoService,
+    private router: Router,
+    private renderer: Renderer2
+  ) {
+    // Inicializar Firebase
     initializeApp(environment.firebaseConfig);
   }
 
   ngOnInit() {
+    this.removeAriaHiddenFromRouterOutlet();
     this.getTokenAndLoadVehicles();
 
     // Suscribirse a cambios en los vehículos
@@ -37,6 +43,19 @@ export class VehiculoPage implements OnInit {
     }
   }
 
+  /**
+   * Remueve el atributo aria-hidden del ion-router-outlet
+   */
+  removeAriaHiddenFromRouterOutlet() {
+    const routerOutlet = document.querySelector('ion-router-outlet');
+    if (routerOutlet) {
+      this.renderer.removeAttribute(routerOutlet, 'aria-hidden');
+    }
+  }
+
+  /**
+   * Obtiene el token del usuario autenticado y carga los vehículos
+   */
   getTokenAndLoadVehicles() {
     const auth = getAuth();
     onAuthStateChanged(auth, async (user) => {
@@ -53,6 +72,9 @@ export class VehiculoPage implements OnInit {
     });
   }
 
+  /**
+   * Carga los vehículos del usuario autenticado
+   */
   async cargarVehiculos() {
     try {
       if (!this.token) {
@@ -67,6 +89,9 @@ export class VehiculoPage implements OnInit {
     }
   }
 
+  /**
+   * Navega a la página para registrar un nuevo vehículo
+   */
   navigateToPageRegistrarVehiculo() {
     this.router.navigate(['/agregar-vehiculo']);
   }
