@@ -9,12 +9,16 @@ import { environment } from 'src/environments/environment';
 })
 export class VehiculoService {
   private vehiculoSubject = new BehaviorSubject<any[]>([]); // Stream para emitir cambios en vehículos como array
+  vehiculo$ = this.vehiculoSubject.asObservable(); // Observable para suscripción
 
   constructor(private http: HttpClient, private firestore: AngularFirestore) {}
 
-  // Método para agregar un vehículo
+  /**
+   * Agregar un vehículo al backend (Firebase o API)
+   */
   async addVehiculo(datosVehiculo: dataBodyVehiculo, imgFileUser: any) {
     try {
+      // Crear el FormData para enviar al backend
       const formData = new FormData();
       formData.append('p_id_usuario', datosVehiculo.p_id_usuario?.toString());
       formData.append('p_patente', datosVehiculo.p_patente);
@@ -27,11 +31,13 @@ export class VehiculoService {
         formData.append('token', datosVehiculo.token);
       }
       formData.append('image', imgFileUser.file, imgFileUser.fname);
+
+      // Realizar la llamada HTTP para agregar el vehículo
       const response = await lastValueFrom(
         this.http.post<any>(environment.apiUrl + 'vehiculo/agregar', formData)
       );
 
-      // Emitir el vehículo recién agregado
+      // Crear el objeto de vehículo que se debe emitir
       const nuevoVehiculo = {
         id: response.id,
         patente: datosVehiculo.p_patente,
@@ -43,6 +49,7 @@ export class VehiculoService {
         imagen_vehiculo: response.imagen_vehiculo, // Suponiendo que la API devuelve la URL de la imagen
       };
 
+      // Emitir el nuevo vehículo al stream
       this.addVehiculoToStream(nuevoVehiculo);
       return response;
     } catch (error) {
@@ -51,20 +58,26 @@ export class VehiculoService {
     }
   }
 
-  // Método para obtener vehículos desde la API
+  /**
+   * Obtener vehículos desde la API
+   */
   async obtenVehiculo(data: dataGetVehiculo) {
     try {
       const params = {
         p_id: data.p_id,
         token: data.token,
       };
+
+      // Realizar la llamada para obtener los vehículos
       const response = await lastValueFrom(
         this.http.get<any>(environment.apiUrl + 'vehiculo/obtener', { params })
       );
 
-      // Emitir el array de vehículos obtenido
+      // Emitir el array de vehículos obtenido al stream
       const vehiculos = Array.isArray(response) ? response : Object.values(response);
-      this.vehiculoSubject.next(vehiculos);
+
+      // Limpiar el stream antes de emitir los nuevos vehículos
+      this.vehiculoSubject.next(vehiculos);  // Reemplaza el stream anterior
 
       return vehiculos;
     } catch (error) {
@@ -78,23 +91,34 @@ export class VehiculoService {
     return this.obtenVehiculo(data);
   }
 
-  // Stream para escuchar cambios en los vehículos
+  /**
+   * Stream para escuchar cambios en los vehículos
+   */
   getVehiculoStream() {
-    return this.vehiculoSubject.asObservable(); // Escuchar como Observable
+    return this.vehiculoSubject.asObservable(); // Escuchar cambios en el stream de vehículos
   }
 
-  // Método para emitir un nuevo vehículo
+  /**
+   * Emitir un nuevo vehículo al stream para que se actualice la lista
+   */
   addVehiculoToStream(vehiculo: any) {
     const vehiculosActuales = this.vehiculoSubject.getValue();
-    this.vehiculoSubject.next([...vehiculosActuales, vehiculo]); // Agregar al stream como un nuevo array
+
+    // Verifica si el vehículo ya existe (por patente o ID, dependiendo del backend)
+    if (!vehiculosActuales.find(v => v.patente === vehiculo.patente)) {
+      this.vehiculoSubject.next([...vehiculosActuales, vehiculo]); // Solo emite si no está duplicado
+    }
   }
 
-  // Método para obtener vehículos desde Firestore
+  /**
+   * Obtener vehículos desde Firestore
+   */
   obtenerVehiculosDesdeFirestore(): Observable<any[]> {
     return this.firestore.collection('vehiculos').valueChanges();
   }
 }
 
+// Interfaces para los datos del vehículo
 interface dataBodyVehiculo {
   p_id_usuario: number;
   p_patente: string;

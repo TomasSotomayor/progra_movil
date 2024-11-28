@@ -43,7 +43,9 @@ export class AgregarvehiculoPage {
 
       const req = await this.vehiculoService.addVehiculo(vehiculoData, this.imagen);
 
-      this.vehiculoService.addVehiculoToStream(req); // Emitir el nuevo vehículo
+      // Emitir el nuevo vehículo al stream
+      this.vehiculoService.addVehiculoToStream(req);
+
       await this.helper.showAlert('Vehículo agregado correctamente.', 'Información');
       this.router.navigateByUrl('/vehiculo');
     } catch (error) {
@@ -52,22 +54,30 @@ export class AgregarvehiculoPage {
     }
   }
 
+  /**
+   * Tomar una foto usando la cámara del dispositivo
+   */
   async takePicture() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri,
-    });
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri,
+      });
 
-    if (image.webPath) {
-      const response = await fetch(image.webPath);
-      const blob = await response.blob();
+      if (image.webPath) {
+        const response = await fetch(image.webPath);
+        const blob = await response.blob();
 
-      this.imagen = {
-        fname: 'foto.' + image.format,
-        src: image.webPath,
-        file: blob,
-      };
+        this.imagen = {
+          fname: 'foto.' + image.format,
+          src: image.webPath,
+          file: blob,
+        };
+      }
+    } catch (error) {
+      console.error('Error al tomar la foto: ', error);
+      await this.helper.showAlert('No se pudo tomar la foto', 'Error');
     }
   }
 }

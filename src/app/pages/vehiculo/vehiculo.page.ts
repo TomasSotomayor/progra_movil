@@ -31,14 +31,14 @@ export class VehiculoPage implements OnInit, OnDestroy {
     // Escuchar cambios en los vehículos desde el servicio
     this.vehiculoSub = this.vehiculoService.getVehiculoStream().subscribe((nuevoVehiculo) => {
       if (nuevoVehiculo) {
-        this.vehiculos.push(nuevoVehiculo);
+        this.vehiculos.push(nuevoVehiculo); // Agregar el vehículo al listado
       }
     });
   }
 
   ngOnDestroy() {
     if (this.vehiculoSub) {
-      this.vehiculoSub.unsubscribe();
+      this.vehiculoSub.unsubscribe(); // Limpiar la suscripción
     }
   }
 
@@ -82,7 +82,7 @@ export class VehiculoPage implements OnInit, OnDestroy {
 
       const data = { p_id: 1, token: this.token };
       const req = await this.vehiculoService.obtenVehiculo(data);
-      this.vehiculos = req;
+      this.vehiculos = req; // Cargar los vehículos desde la API
     } catch (error) {
       console.error('Error al cargar vehículos: ', error);
     }
