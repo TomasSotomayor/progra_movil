@@ -21,15 +21,14 @@ export class VehiculoPage implements OnInit, OnDestroy {
     private router: Router,
     private renderer: Renderer2
   ) {
-    // Inicializar Firebase
-    initializeApp(environment.firebaseConfig);
+    initializeApp(environment.firebaseConfig); // Inicializar Firebase
   }
 
   ngOnInit() {
     this.removeAriaHiddenFromRouterOutlet();
     this.getTokenAndLoadVehicles();
 
-    // Suscribirse a cambios en los vehículos
+    // Escuchar cambios en los vehículos desde el servicio
     this.vehiculoSub = this.vehiculoService.getVehiculoStream().subscribe((nuevoVehiculo) => {
       if (nuevoVehiculo) {
         this.vehiculos.push(nuevoVehiculo);
