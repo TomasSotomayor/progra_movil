@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, BehaviorSubject, Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class VehiculoService {
   private vehiculoSubject = new BehaviorSubject<any[]>([]); // Stream para emitir cambios en vehículos como array
 
-  constructor(private http: HttpClient, private firestore: AngularFirestore) {}
+  constructor(private http: HttpClient) {}
 
   // Método para agregar un vehículo
   async addVehiculo(datosVehiculo: dataBodyVehiculo, imgFileUser: any) {
@@ -89,10 +88,6 @@ export class VehiculoService {
     this.vehiculoSubject.next([...vehiculosActuales, vehiculo]); // Agregar al stream como un nuevo array
   }
 
-  // Método para obtener vehículos desde Firestore
-  obtenerVehiculosDesdeFirestore(): Observable<any[]> {
-    return this.firestore.collection('vehiculos').valueChanges();
-  }
 }
 
 interface dataBodyVehiculo {
