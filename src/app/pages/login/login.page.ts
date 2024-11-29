@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
           token:token
         });
         this.usuario = req.data;
-        console.log("Data usuario: ", this.usuario[0].id_usuario);
       }
       loader.dismiss();
     } catch (error:any) {
@@ -69,7 +68,6 @@ export class LoginPage implements OnInit {
     }];
     this.storage.agregarToken(jsonToken);
     let token = await this.storage.obtenStorage();
-    console.log(token[0].nombre);
     this.router.navigateByUrl("inicio");
   }
   

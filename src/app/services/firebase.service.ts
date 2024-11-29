@@ -32,7 +32,6 @@ export class FirebaseService {
     await this.fire.signOut();
   }
 
-  // Autentifica usuario
   async obtenerToken(): Promise<string | null> {
     const user = await this.fire.currentUser;
     if (user) {
