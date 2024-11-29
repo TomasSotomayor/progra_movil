@@ -40,7 +40,6 @@ export class InicioPage implements OnInit {
     this.loadUsuario();
     this.loadViajes();
     this.correo = this.activateRoute.snapshot.params["correo"];
-    console.log("Parámetro URL: ", this.correo);
     setTimeout(() => {
       this.loaded = true;
     }, 4000);
@@ -53,7 +52,6 @@ export class InicioPage implements OnInit {
       token: dataStorage[0].token
     });
     this.usuario = req.data;
-    console.log("Data inicio usuario: ", this.usuario);
 
     // Verifica que haya un usuario disponible antes de acceder a sus propiedades
     if (this.usuario.length > 0) {
@@ -75,7 +73,6 @@ export class InicioPage implements OnInit {
   }
 
   ionViewDidEnter(): void {
-    console.log("view did enter");
     if (this.card) {
       this.animation = this.animationCtrl
         .create()

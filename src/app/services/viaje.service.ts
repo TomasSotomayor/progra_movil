@@ -25,20 +25,18 @@ export class ViajeService {
     } catch(error) {
       console.error('Error al agregar viaje: ', error)
       throw error;
-  }}
+  }};
 
-  async obtenViaje(data:dataGetViaje) {
+  async obtenViaje(p_token: string) {
     try {
       const params = {
-        p_id: data.p_id,
-        p_id_usuario: data.p_id_usuario,
-        token: data.token
+        token: p_token
       }
       const response = await lastValueFrom(this.http.get<any>(environment.apiUrl + 'viaje/obtener', {params}));
       return response;
     } catch (error) {
       throw error;
-  }}
+  }};
 
 }
 
@@ -49,10 +47,4 @@ interface dataBodyViaje {
   p_ubicacion_origen: string;
   p_ubicacion_destino: string;
   token?: string;
-}
-
-interface dataGetViaje {
-  p_id: number;
-  p_id_usuario: number;
-  token: string;
 }

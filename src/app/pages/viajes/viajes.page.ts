@@ -12,6 +12,7 @@ import { UserModel } from 'src/app/models/usuario';
   templateUrl: './viajes.page.html',
   styleUrls: ['./viajes.page.scss'],
 })
+
 export class ViajesPage implements OnInit {
   id_usuario: number = 0;
   id_vehiculo: number = 0;
@@ -19,7 +20,6 @@ export class ViajesPage implements OnInit {
   ubicacion_origen: string = '';
   ubicacion_destino: string = '';
   usuario: UserModel[] = [];
-  vehiculoSelec: string = "";
   viaje: any[] = [];
 
   constructor(
@@ -34,14 +34,11 @@ export class ViajesPage implements OnInit {
 
   ngOnInit() {
     this.loadUsuario();
+    this.loadViaje();
   }
 
   iChange(event:any) {
     this.id_vehiculo = event.detail.value.id_vehiculo;
-  }
-
-  compareWith(a:any, b:any) {
-    return a && b ? a.id === b.id : a === b;
   }
 
   async loadUsuario() {
@@ -62,11 +59,11 @@ export class ViajesPage implements OnInit {
   async agregarViaje() {
     let tokenDatos = await this.storage.obtenStorage();
     try {
-      console.log("Vehiculo: ", this.vehiculoSelec)
+      console.log("Vehiculo: ", this.id_vehiculo)
       console.log("Usuario: ", tokenDatos[0].usuario_id)
       const req = await this.viajesService.addViaje({
         'p_id_usuario': tokenDatos[0].usuario_id,
-        'p_id_vehiculo': parseInt(this.vehiculoSelec),
+        'p_id_vehiculo': this.id_vehiculo,
         'p_costo': this.costo,
         'p_ubicacion_origen': this.ubicacion_origen,
         'p_ubicacion_destino': this.ubicacion_destino,
