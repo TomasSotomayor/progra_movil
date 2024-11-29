@@ -1,20 +1,18 @@
-import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vehiculo',
   templateUrl: './vehiculo.page.html',
   styleUrls: ['./vehiculo.page.scss'],
 })
-export class VehiculoPage implements OnInit, OnDestroy {
+export class VehiculoPage implements OnInit {
   vehiculos: any[] = [];
   token: string | null = null;
-  vehiculoSub: Subscription | null = null;
 
   constructor(
     private vehiculoService: VehiculoService,
@@ -27,19 +25,6 @@ export class VehiculoPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.removeAriaHiddenFromRouterOutlet();
     this.getTokenAndLoadVehicles();
-
-    // Escuchar cambios en los vehículos desde el servicio
-    this.vehiculoSub = this.vehiculoService.getVehiculoStream().subscribe((nuevoVehiculo) => {
-      if (nuevoVehiculo) {
-        this.vehiculos.push(nuevoVehiculo); // Agregar el vehículo al listado
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.vehiculoSub) {
-      this.vehiculoSub.unsubscribe(); // Limpiar la suscripción
-    }
   }
 
   /**
@@ -82,7 +67,8 @@ export class VehiculoPage implements OnInit, OnDestroy {
 
       const data = { p_id: 1, token: this.token };
       const req = await this.vehiculoService.obtenVehiculo(data);
-      this.vehiculos = req; // Cargar los vehículos desde la API
+      this.vehiculos = Array.isArray(req) ? req : []; // Asegurarse de que sea un arreglo
+      console.log('Vehículos cargados: ', this.vehiculos);
     } catch (error) {
       console.error('Error al cargar vehículos: ', error);
     }

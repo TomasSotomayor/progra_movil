@@ -64,7 +64,7 @@ export class VehiculoService {
   async obtenVehiculo(data: dataGetVehiculo) {
     try {
       const params = {
-        p_id: data.p_id,
+        p_id: 38,
         token: data.token,
       };
 
@@ -72,14 +72,9 @@ export class VehiculoService {
       const response = await lastValueFrom(
         this.http.get<any>(environment.apiUrl + 'vehiculo/obtener', { params })
       );
+      console.log("odasdpm: ", response)
 
-      // Emitir el array de vehículos obtenido al stream
-      const vehiculos = Array.isArray(response) ? response : Object.values(response);
-
-      // Limpiar el stream antes de emitir los nuevos vehículos
-      this.vehiculoSubject.next(vehiculos);  // Reemplaza el stream anterior
-
-      return vehiculos;
+      return response;
     } catch (error) {
       console.error('Error al obtener vehículos:', error);
       throw error;
