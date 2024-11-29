@@ -1,18 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Lista vehiculos</ion-title>
+    <ion-title style="text-align: center; font-size: 28px;">Lista vehículos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" style="background-color: #808080;">
-
-
   <!-- Lista de vehículos -->
   <ion-list>
-    <ion-item *ngFor="let vehiculo of vehiculos" style="margin: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: #f4f4f4;">
+    <ion-item
+      *ngFor="let vehiculo of vehiculos"
+      style="margin: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: #f4f4f4;"
+    >
       <ion-thumbnail slot="start">
-        <!-- Mostrar imagen del vehículo desde la base de datos, o un placeholder si no existe -->
         <img
           [src]="vehiculo.imagen_vehiculo || 'https://via.placeholder.com/150'"
           alt="Imagen Vehículo"
@@ -30,15 +30,10 @@
     </ion-item>
   </ion-list>
 
-    <!-- Botón de agregar vehículo -->
-    <div style="text-align: center; margin-top: 20px;">
-      <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
-        Agregar Vehículo
-      </ion-button>
-    </div>
-
-    <h1 *ngFor="let v of vehiculos">
-      {{v.marca}}
-    </h1>
-
+  <!-- Botón de agregar vehículo -->
+  <div style="text-align: center; margin-top: 20px;">
+    <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
+      Agregar Vehículo
+    </ion-button>
+  </div>
 </ion-content>
