@@ -63,7 +63,7 @@ export class VehiculoService {
   async obtenVehiculo(data: dataGetVehiculo) {
     try {
       const params = {
-        p_id: 38,
+        p_id: data.p_id,
         token: data.token,
       };
 
