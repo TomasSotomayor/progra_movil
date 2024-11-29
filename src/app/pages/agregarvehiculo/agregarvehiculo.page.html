@@ -1,74 +1,77 @@
-<ion-header [translucent]="true" aria-hidden="false">
-  <ion-toolbar>
-    <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Registro de Vehículo</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button slot="start"></ion-back-button>
-    <ion-title>Agregar Vehículo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-size: 28px;">Agregar Vehículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Agregar Vehículo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div style="display: flex; justify-content: center; margin-top: 40px;">
-    <ion-img src="assets/images/anadir.jpg" style="width: 200px; height: 200px; border-radius: 50%;"></ion-img>
+<ion-content [fullscreen]="true" style="padding: 20px;">
+  <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+    <!-- Imagen predeterminada o imagen seleccionada -->
+    <ion-img
+      *ngIf="imagen; else placeholderImage"
+      [src]="imagen.src"
+      style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;"
+    ></ion-img>
+    <ng-template #placeholderImage>
+      <ion-img
+        src="assets/images/anadir.jpg"
+        style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;"
+      ></ion-img>
+    </ng-template>
   </div>
 
-  <ion-list style="padding: 20px;">
-
+  <!-- Formulario para registrar vehículo -->
+  <ion-list>
     <ion-item>
-      <ion-label>Patente</ion-label>
+      <ion-label position="floating">Patente</ion-label>
       <ion-input type="text" [(ngModel)]="patente" placeholder="Ingrese la patente"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Marca</ion-label>
+      <ion-label position="floating">Marca</ion-label>
       <ion-input type="text" [(ngModel)]="marca" placeholder="Ingrese la marca"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Modelo</ion-label>
+      <ion-label position="floating">Modelo</ion-label>
       <ion-input type="text" [(ngModel)]="modelo" placeholder="Ingrese el modelo"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Año</ion-label>
+      <ion-label position="floating">Año</ion-label>
       <ion-input type="number" [(ngModel)]="anio" placeholder="Ingrese el año"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Color</ion-label>
+      <ion-label position="floating">Color</ion-label>
       <ion-input type="text" [(ngModel)]="color" placeholder="Ingrese el color"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Tipo de Combustible</ion-label>
-      <ion-input type="text" [(ngModel)]="tipo_combustible" placeholder="Ingrese el tipo de combustible"></ion-input>
+      <ion-label position="floating">Tipo de Combustible</ion-label>
+      <ion-select [(ngModel)]="tipo_combustible" placeholder="Seleccione el tipo de combustible">
+        <ion-select-option value="Gasolina">Gasolina</ion-select-option>
+        <ion-select-option value="Diésel">Diésel</ion-select-option>
+        <ion-select-option value="Eléctrico">Eléctrico</ion-select-option>
+        <ion-select-option value="Híbrido">Híbrido</ion-select-option>
+      </ion-select>
     </ion-item>
-
   </ion-list>
 
+  <!-- Selección de imagen -->
   <ion-item>
-    <ion-label>Foto</ion-label>
-    <img *ngIf="imagen" [src]="imagen.src" height="100" width="100" alt="">
-    <ion-button (click)="takePicture()" expand="block" fill="clear" shape="round">
-      <ion-icon style="margin-right: 10px" slot="start" name="camera-outline">
-        Tomar foto
-      </ion-icon>
+    <ion-label>Imagen del Vehículo</ion-label>
+    <ion-button expand="block" color="secondary" (click)="takePicture()">
+      Tomar Foto
     </ion-button>
   </ion-item>
 
   <div style="text-align: center; margin-top: 20px;">
-    <ion-button expand="block" (click)="agregarVehiculo()">Agregar</ion-button>
+    <ion-button expand="full" color="primary" (click)="agregarVehiculo()">
+      Agregar Vehículo
+    </ion-button>
   </div>
-
 </ion-content>

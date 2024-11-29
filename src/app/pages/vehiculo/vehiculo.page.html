@@ -1,24 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="text-align: center; font-size: 28px;">Registro de Vehículo</ion-title>
+    <ion-title style="text-align: center; font-size: 28px;">Lista vehículos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" style="background-color: #808080;">
-  <!-- Botón de agregar vehículo -->
-  <div style="text-align: center; margin-top: 20px;">
-    <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
-      Agregar Vehículo
-    </ion-button>
-  </div>
-
   <!-- Lista de vehículos -->
   <ion-list>
-    <ion-item *ngFor="let vehiculo of vehiculos" style="margin: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: #f4f4f4;">
-      <ion-avatar slot="start">
-        <img [src]="vehiculo.imagen_vehiculo || 'assets/placeholder-car.png'" alt="Imagen Vehículo" style="width: 50px; height: 50px; object-fit: cover;">
-      </ion-avatar>
+    <ion-item
+      *ngFor="let vehiculo of vehiculos"
+      style="margin: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: #f4f4f4;"
+    >
+      <ion-thumbnail slot="start">
+        <img
+          [src]="vehiculo.imagen_vehiculo || 'https://via.placeholder.com/150'"
+          alt="Imagen Vehículo"
+          style="width: 50px; height: 50px; object-fit: cover;"
+        />
+      </ion-thumbnail>
+
       <ion-label style="flex: 1; padding-left: 10px;">
         <h2>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h2>
         <p><strong>Color:</strong> {{ vehiculo.color }}</p>
@@ -28,4 +29,11 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <!-- Botón de agregar vehículo -->
+  <div style="text-align: center; margin-top: 20px;">
+    <ion-button (click)="navigateToPageRegistrarVehiculo()" expand="full" color="primary">
+      Agregar Vehículo
+    </ion-button>
+  </div>
 </ion-content>
